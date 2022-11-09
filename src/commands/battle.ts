@@ -3,7 +3,7 @@ import { Command } from "../interfaces/Command";
 import { Battle } from "../classes/Battle";
 import { powerUpCheck } from "../modules/powerUpCheck";
 import { Fighter } from "../classes/Fighter";
-import { updateCredits, updateXP } from "../modules/updateUserData";
+import { updateMOBcoin, updateXP } from "../modules/updateUserData";
 import { getUserData } from "../modules/getUserData";
 
 export const battle: Command = {
@@ -63,37 +63,19 @@ export const battle: Command = {
         .setName("opponent9")
         .setDescription("A player you wish to battle.")
         .setRequired(false)
-    )
-    .addUserOption((option) =>
-    option
-      .setName("opponent10")
-      .setDescription("A player you wish to battle.")
-      .setRequired(false)
-    )
-    .addUserOption((option) =>
-      option
-        .setName("opponent11")
-        .setDescription("A player you wish to battle.")
-        .setRequired(false)
-    )
-    .addUserOption((option) =>
-    option
-      .setName("opponent12")
-      .setDescription("A player you wish to battle.")
-      .setRequired(false)
     ),
   run: async (interaction: CommandInteraction) => {
 
     const player1 = interaction.user as User;
     const player1_data = await getUserData(player1.id);
     await updateXP(player1_data, 5);
-    await updateCredits(player1_data, 1);
+    await updateMOBcoin(player1_data, 1);
     const author = await powerUpCheck(player1, player1.id);
 
     const player2 = interaction.options.getUser("opponent1") as User;
     const player2_data = await getUserData(player2.id);
     await updateXP(player2_data, 5);
-    await updateCredits(player2_data, 1);
+    await updateMOBcoin(player2_data, 1);
     const opponent1 = await powerUpCheck(player2, player2.id);
     const opponents: Fighter[] = [ opponent1 ];
     let oppMultiplier = 1;
@@ -103,7 +85,7 @@ export const battle: Command = {
       const opponent = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       opponents.push(opponent);
       oppMultiplier += 1;
     }    
@@ -112,7 +94,7 @@ export const battle: Command = {
       const opponent = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       opponents.push(opponent);
       oppMultiplier += 1;
     }
@@ -121,7 +103,7 @@ export const battle: Command = {
       const opponent = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       opponents.push(opponent);
       oppMultiplier += 1;
     }    
@@ -130,7 +112,7 @@ export const battle: Command = {
       const opponent = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       opponents.push(opponent);
       oppMultiplier += 1;
     }
@@ -139,7 +121,7 @@ export const battle: Command = {
       const opponent = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       opponents.push(opponent);
       oppMultiplier += 1;
     }    
@@ -148,7 +130,7 @@ export const battle: Command = {
       const opponent = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       opponents.push(opponent);
       oppMultiplier += 1;
     }
@@ -157,7 +139,7 @@ export const battle: Command = {
       const opponent = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       opponents.push(opponent);
       oppMultiplier += 1;
     }    
@@ -166,7 +148,7 @@ export const battle: Command = {
       const opponent = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       opponents.push(opponent);
       oppMultiplier += 1;
     }
@@ -174,8 +156,8 @@ export const battle: Command = {
     if (opponents != null) {
   
       const exp = 15 * oppMultiplier;
-      const credits = 3 * oppMultiplier;
-      const battle = new Battle(interaction, [author, ...opponents], exp, credits, player1_data, author);    
+      const mobcoin = 3 * oppMultiplier;
+      const battle = new Battle(interaction, [author, ...opponents], exp, mobcoin, player1_data, author);    
       await battle.run();
 
     }

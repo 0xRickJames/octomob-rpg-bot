@@ -3,15 +3,17 @@ import { Command } from "../interfaces/Command";
 import { Battle } from "../classes/Battle";
 import { powerUpCheck } from "../modules/powerUpCheck";
 import { Fighter } from "../classes/Fighter";
-import { updateCredits, updateXP } from "../modules/updateUserData";
+import { updateMOBcoin, updateXP } from "../modules/updateUserData";
 import { getUserData } from "../modules/getUserData";
-import { Katana, Pistol } from "../classes/Weapon";
-import { BattleHelmet, BattleBoots } from "../classes/Armor";
+import { LaserPistol, LaserRifle, PulseCannon, RocketLauncher } from "../classes/Weapon";
+import { PowerArmor, PowerBoots, PowerGloves, PowerHelmet } from "../classes/Armor";
+import { Nuker } from "../classes/Pet";
+import { Nuke } from "../classes/Skill";
 
-export const agent: Command = {
+export const bullduck: Command = {
   data: new SlashCommandBuilder()
-    .setName("agent")
-    .setDescription("Fight against The Government Agent!")
+    .setName("bullduck")
+    .setDescription("Fight against BullDuck!")
     .addUserOption((option) =>
       option
         .setName("ally1")
@@ -71,7 +73,7 @@ export const agent: Command = {
     const player1 = interaction.user as User;
     const player1_data = await getUserData(player1.id);
     await updateXP(player1_data, 5);
-    await updateCredits(player1_data, 1);
+    await updateMOBcoin(player1_data, 1);
     const author = await powerUpCheck(player1, player1.id);
     const allies: Fighter[] = [];
     let oppMultiplier = 1;
@@ -81,7 +83,7 @@ export const agent: Command = {
         const ally = await powerUpCheck(player, player.id);
         const player_data = await getUserData(player.id);
         await updateXP(player_data, 5);
-        await updateCredits(player_data, 1);
+        await updateMOBcoin(player_data, 1);
         allies.push(ally);
         oppMultiplier += 1;
       } 
@@ -90,7 +92,7 @@ export const agent: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -99,7 +101,7 @@ export const agent: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
@@ -108,7 +110,7 @@ export const agent: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -117,7 +119,7 @@ export const agent: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
@@ -126,7 +128,7 @@ export const agent: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -135,7 +137,7 @@ export const agent: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
@@ -144,7 +146,7 @@ export const agent: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -153,31 +155,42 @@ export const agent: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
-
-    const boss = new Fighter("Government Agent");
-    boss.hp = 300;
-    boss.attack = 20;
+    const boss = new Fighter("BullDuck");
+    boss.hp = 3000;
+    boss.attack = 100;
+    boss.armor = 0.37;
     boss.critChance = .40;
-    boss.imageUrl = "https://cdn.discordapp.com/attachments/983738763668770878/999004014698045460/A0FEB5B6-D61D-4AB5-B8F7-14D2442F1954.png";
-    const pistol = new Pistol();
-    const katana = new Katana();
-    const battle_helmet = new BattleHelmet();
-    const battle_boots = new BattleBoots();
-    boss.equipWeapon(pistol);
-    boss.equipWeapon(katana);
-    boss.equipArmor(battle_helmet);
-    boss.equipArmor(battle_boots);
+    boss.imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1039733377428889610/image.png";
+    const laser_pistol = new LaserPistol();
+    const laser_rifle = new LaserRifle();
+    const rocket_launcher = new RocketLauncher();
+    const pulse_cannon = new PulseCannon();
+    boss.equipWeapon(laser_pistol);
+    boss.equipWeapon(laser_rifle);
+    boss.equipWeapon(rocket_launcher);
+    boss.equipWeapon(pulse_cannon);
+    const power_helmet = new PowerHelmet();
+    const power_boots = new PowerBoots();
+    const power_gloves = new PowerGloves();
+    const power_armor = new PowerArmor();
+    boss.equipArmor(power_helmet);
+    boss.equipArmor(power_boots);
+    boss.equipArmor(power_armor);
+    boss.equipArmor(power_gloves);
+    const nuker = new Nuker();
+    nuker.setOwner(boss);
+    boss.skill = new Nuke();
     
-    const exp = 100 / oppMultiplier;
+    const exp = 1500 / oppMultiplier;
     const fixed_exp = exp.toFixed(0) as unknown as number;
-    const credits = 35 / oppMultiplier;
-    const fixed_credits = credits.toFixed(0) as unknown as number;
+    const mobcoin = 350 / oppMultiplier;
+    const fixed_mobcoin = mobcoin.toFixed(0) as unknown as number;
 
-    const battle = new Battle(interaction, [boss, author, ...allies], fixed_exp, fixed_credits, player1_data, author);
+    const battle = new Battle(interaction, [boss, author, ...allies], fixed_exp, fixed_mobcoin, player1_data, author);
     battle.setBoss(boss);     
     await battle.run();
 

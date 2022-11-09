@@ -5,10 +5,11 @@ export const getUserData = async (userId: string): Promise<UserInt> => {
     (await UserModel.findOne({ id: userId })) ||
     (await UserModel.create({
       id: userId,
-      xp: 0,
-      credits: 0,
+      exp: 0,
+      mobcoin: 0,
       equippedArmors: [],
       equippedWeapons: [],
+      equippedClothes: [],
       skill: undefined,
       pet: undefined,
       battleWins: 0,

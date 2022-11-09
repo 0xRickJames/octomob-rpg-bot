@@ -1,19 +1,18 @@
 import { SlashCommandBuilder, GuildMember, User } from "discord.js";
 import { Command } from "../interfaces/Command";
 import { getUserData } from "../modules/getUserData";
-import { updateXP } from "../modules/updateUserData";
+import { updateMOBcoin, updateXP } from "../modules/updateUserData";
 
-export const boostxp: Command = {
+export const boostmobcoin: Command = {
   data: new SlashCommandBuilder()
-    .setName("boostxp")
-    .setDescription("XP Booster")
+    .setName("boostmobcoin")
+    .setDescription("MOBcoin Booster")
     .addNumberOption((option) =>
       option
       .setName("amount")
-      .setDescription("The amount of XP you want to add")
+      .setDescription("The amount of mobcoin you want to add")
       .setRequired(true)
-    )
-    .addUserOption((option) =>
+    ).addUserOption((option) =>
     option
       .setName("boostie")
       .setDescription("A person to boost")
@@ -23,23 +22,22 @@ export const boostxp: Command = {
 
     const author = interaction.member as GuildMember;
     if (author.roles.cache.has("1039934064376938637")) {
-      const xp = interaction.options.get("amount");
-
+      const mobcoin = interaction.options.get("amount");
       if (interaction.options.getUser("boostie")) {
-        if (xp != null) { 
+        if (mobcoin != null) { 
           const user = interaction.options.getUser("boostie") as User;
           const  targetUser = await getUserData(user.id);
-          await updateXP(targetUser, xp.value as number);
-          await interaction.reply(`Boosted XP ${xp.value} points for ${user.username}!`);
+          await updateMOBcoin(targetUser, mobcoin.value as number);
+          await interaction.reply(`Boosted MOBcoin ${mobcoin.value} for ${user.username}!`);
           }
   
       }
       else {
         const member = interaction.member as GuildMember;
         const  targetUser = await getUserData(member.id);
-        if (xp != null) { 
-        await updateXP(targetUser, xp.value as number);
-        await interaction.reply("Boosted XP " + xp.value + " points!");
+        if (mobcoin != null) { 
+        await updateMOBcoin(targetUser, mobcoin.value as number);
+        await interaction.reply("Boosted MOBcoin " + mobcoin.value + "!");
         }
       }
 

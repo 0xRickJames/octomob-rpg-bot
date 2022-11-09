@@ -28,9 +28,9 @@ export const raid: Command = {
     boss.critChance = 0.4;
 
     const exp = 10;
-    const credits = 2;
+    const mobcoin = 2;
 
-    const battle = new Battle(interaction, [author, boss, ...bots], exp, credits, player1_data, author);
+    const battle = new Battle(interaction, [author, boss, ...bots], exp, mobcoin, player1_data, author);
 
     battle.setBoss(boss);
 

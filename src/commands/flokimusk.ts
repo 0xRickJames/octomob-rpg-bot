@@ -3,17 +3,17 @@ import { Command } from "../interfaces/Command";
 import { Battle } from "../classes/Battle";
 import { powerUpCheck } from "../modules/powerUpCheck";
 import { Fighter } from "../classes/Fighter";
-import { updateCredits, updateXP } from "../modules/updateUserData";
+import { updateMOBcoin, updateXP } from "../modules/updateUserData";
 import { getUserData } from "../modules/getUserData";
 import { Katana, Pistol, Rifle, RocketLauncher } from "../classes/Weapon";
 import { BattleHelmet, BattleBoots, BattleArmor, BattleGloves } from "../classes/Armor";
 import { AttackDrone, MedicalDrone } from "../classes/Pet";
 import { CombatStim } from "../classes/Skill";
 
-export const thug: Command = {
+export const flokimusk: Command = {
   data: new SlashCommandBuilder()
-    .setName("thug")
-    .setDescription("Fight against The Cyborg Thug!")
+    .setName("flokimusk")
+    .setDescription("Fight against flokimusk!")
     .addUserOption((option) =>
       option
         .setName("ally1")
@@ -73,7 +73,7 @@ export const thug: Command = {
     const player1 = interaction.user as User;
     const player1_data = await getUserData(player1.id);
     await updateXP(player1_data, 5);
-    await updateCredits(player1_data, 1);
+    await updateMOBcoin(player1_data, 1);
     const author = await powerUpCheck(player1, player1.id);
     const allies: Fighter[] = [];
     let oppMultiplier = 1;
@@ -83,7 +83,7 @@ export const thug: Command = {
         const ally = await powerUpCheck(player, player.id);
         const player_data = await getUserData(player.id);
         await updateXP(player_data, 5);
-        await updateCredits(player_data, 1);
+        await updateMOBcoin(player_data, 1);
         allies.push(ally);
         oppMultiplier += 1;
       } 
@@ -92,7 +92,7 @@ export const thug: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -101,7 +101,7 @@ export const thug: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
@@ -110,7 +110,7 @@ export const thug: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -119,7 +119,7 @@ export const thug: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
@@ -128,7 +128,7 @@ export const thug: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -137,7 +137,7 @@ export const thug: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
@@ -146,7 +146,7 @@ export const thug: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -155,17 +155,17 @@ export const thug: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateMOBcoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
 
-    const boss = new Fighter("Cyborg Thug");
+    const boss = new Fighter("flokimusk");
     boss.hp = 1200;
     boss.attack = 50;
     boss.armor = 0.3;
     boss.critChance = .40;
-    boss.imageUrl = "https://i.imgur.com/KZ0JVWz.png";
+    boss.imageUrl = "https://cryptobullsociety.com/wp-content/uploads/2022/06/Flokimusk-uai-516x516.jpg";
     const pistol = new Pistol();
     const katana = new Katana();
     const rifle = new Rifle();
@@ -188,10 +188,10 @@ export const thug: Command = {
     
     const exp = 600 / oppMultiplier;
     const fixed_exp = exp.toFixed(0) as unknown as number;
-    const credits = 200 / oppMultiplier;
-    const fixed_credits = credits.toFixed(0) as unknown as number;
+    const mobcoin = 200 / oppMultiplier;
+    const fixed_mobcoin = mobcoin.toFixed(0) as unknown as number;
 
-    const battle = new Battle(interaction, [boss, author, ...allies], fixed_exp, fixed_credits, player1_data, author);
+    const battle = new Battle(interaction, [boss, author, ...allies], fixed_exp, fixed_mobcoin, player1_data, author);
     battle.setBoss(boss);     
     await battle.run();
 

@@ -12,82 +12,82 @@ import { getUserData } from "./getUserData";
 export async function powerUpCheck(player: User, userint: string) {
     const user = await getUserData(userint);
     
-    if (user.xp >= 35000) {
+    if (user.exp >= 35000) {
         const fighter = new Level9(player);
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 9;
-        fighter.xp = user.xp;
-        fighter.credits = user.credits;
+        fighter.exp = user.exp;
+        fighter.mobcoin = user.mobcoin;
         fighter.battleWins = user.battleWins;
         fighter.raidWins = user.raidWins;
         return fighter;
     }
-    else if (user.xp >= 16000) {
+    else if (user.exp >= 16000) {
         const fighter = new Level8(player);
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 8;
-        fighter.xp = user.xp;
-        fighter.credits = user.credits;
+        fighter.exp = user.exp;
+        fighter.mobcoin = user.mobcoin;
         fighter.battleWins = user.battleWins;
         fighter.raidWins = user.raidWins;
         return fighter;
     }
-    else if (user.xp >= 7000) {
+    else if (user.exp >= 7000) {
         const fighter = new Level7(player);
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 7;
-        fighter.xp = user.xp;
-        fighter.credits = user.credits;
+        fighter.exp = user.exp;
+        fighter.mobcoin = user.mobcoin;
         fighter.battleWins = user.battleWins;
         fighter.raidWins = user.raidWins;
         return fighter;
     }
-    else if (user.xp >= 3000) {
+    else if (user.exp >= 3000) {
         const fighter = new Level6(player);
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 6;
-        fighter.xp = user.xp;
-        fighter.credits = user.credits;
+        fighter.exp = user.exp;
+        fighter.mobcoin = user.mobcoin;
         fighter.battleWins = user.battleWins;
         fighter.raidWins = user.raidWins;
         return fighter;
     }
-    else if (user.xp >= 1350) {
+    else if (user.exp >= 1350) {
         const fighter = new Level5(player);
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 5;
-        fighter.xp = user.xp;
-        fighter.credits = user.credits;
+        fighter.exp = user.exp;
+        fighter.mobcoin = user.mobcoin;
         fighter.battleWins = user.battleWins;
         fighter.raidWins = user.raidWins;
         return fighter;
     }
-    else if (user.xp >= 600) {
+    else if (user.exp >= 600) {
         const fighter = new Level4(player);
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 4;
-        fighter.xp = user.xp;
-        fighter.credits = user.credits;
+        fighter.exp = user.exp;
+        fighter.mobcoin = user.mobcoin;
         fighter.battleWins = user.battleWins;
         fighter.raidWins = user.raidWins;
         return fighter;
     }
-    else if (user.xp >= 250) {
+    else if (user.exp >= 250) {
         const fighter = new Level3(player);
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 3;
-        fighter.xp = user.xp;
-        fighter.credits = user.credits;
+        fighter.exp = user.exp;
+        fighter.mobcoin = user.mobcoin;
         fighter.battleWins = user.battleWins;
         fighter.raidWins = user.raidWins;
         return fighter;
     }
-    else if (user.xp >= 100) {
+    else if (user.exp >= 100) {
         const fighter = new Level2(player);
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 2;
-        fighter.xp = user.xp;
-        fighter.credits = user.credits;
+        fighter.exp = user.exp;
+        fighter.mobcoin = user.mobcoin;
         fighter.battleWins = user.battleWins;
         fighter.raidWins = user.raidWins;
         return fighter;
@@ -96,8 +96,8 @@ export async function powerUpCheck(player: User, userint: string) {
         const fighter = new Level1(player);
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 1;
-        fighter.xp = user.xp;
-        fighter.credits = user.credits;
+        fighter.exp = user.exp;
+        fighter.mobcoin = user.mobcoin;
         fighter.battleWins = user.battleWins;
         fighter.raidWins = user.raidWins;
         return fighter; 

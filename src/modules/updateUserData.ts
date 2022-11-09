@@ -1,13 +1,13 @@
 import { UserInt } from "../database/models/UserModel";
 
 export const updateXP = async (User: UserInt, Exp: number) => {
-  User.xp += Exp;
+  User.exp += Exp;
   await User.save();
   return User;
 };
 
-export const updateCredits = async (User: UserInt, Credits: number) => {
-  User.credits += Credits;
+export const updateMOBcoin = async (User: UserInt, MOBcoin: number) => {
+  User.mobcoin += MOBcoin;
   await User.save();
   return User;
 };

@@ -2,10 +2,11 @@ import { Document, model, Schema } from "mongoose";
 
 export interface UserInt extends Document {
   id: string;
-  xp: number;
-  credits: number;
+  exp: number;
+  mobcoin: number;
   equippedArmors: String[];
   equippedWeapons: String[];
+  equippedClothes: String[];
   skill: string;
   pet: string;
   battleWins: number;
@@ -15,10 +16,11 @@ export interface UserInt extends Document {
   
 export const User = new Schema({
   id: String,
-  xp: Number,
-  credits: Number,
+  exp: Number,
+  mobcoin: Number,
   equippedArmors: Array,
   equippedWeapons: Array,
+  equippedClothes: Array,
   skill: String,
   pet: String,
   battleWins: Number,
