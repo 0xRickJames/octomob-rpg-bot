@@ -221,7 +221,7 @@ export class AttackDrone extends Pet {
   id = "attack_drone";
   attack = 15;
   interceptRate = 0.2;
-  imageUrl = "https://cdn.discordapp.com/attachments/983738763668770878/998951739053060226/8554D55F-10CE-4308-887E-FD177E3FD68E.png";
+  imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1001548254351216690/adrone.png";
   }
   export class MedicalDrone extends Pet {
   name = "Medical Drone";
@@ -229,14 +229,14 @@ export class AttackDrone extends Pet {
   healing = 15 ;
   attack = 0;
   interceptRate = 0.2;
-  imageUrl = "https://cdn.discordapp.com/attachments/983738763668770878/998951738654605373/3B0BAEF5-EC1A-441F-94EB-1B053F407299.png";
+  imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1001548200815104021/mdrone.png";
   }
   export class EMPDrone extends Pet {
   name = "EMP Drone";
   id = "emp_drone";
   attack = 10;
   interceptRate = 0.2;
-  imageUrl = "https://cdn.discordapp.com/attachments/983738763668770878/998057770391699526/BD4ABD86-1DA7-4AE0-AEE6-B00DEFA22EC8.jpg";
+  imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1001548197145092268/edrone.png";
   canEat = true;
   }
   export class SpyDrone extends Pet {
@@ -245,7 +245,7 @@ export class AttackDrone extends Pet {
   healing = 10;
   attack = 0;
   interceptRate = 0.2;
-  //imageUrl = "https://imgur.com/G31Esu0.jpg";
+  imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1040069102787641476/spydrone.png";
   stealsArmor = true;
   }
   export class Doge extends Pet {

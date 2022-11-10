@@ -32,7 +32,7 @@ export class Fighter extends Base {
   id: string;
   /** Experience Points */
   exp?: number;
-  /** MOBcoin Points */
+  /** MobCoin Points */
   mobcoin?: number;
   /** Level */
   level?: number;
@@ -115,7 +115,106 @@ export class Fighter extends Base {
       { name: "👊Crit Damage", value: `x${this.critDamage.toFixed(1)}`, inline: true },
       { name: "🧠Skill", value: this.skill?.name || "none", inline: true },
       { name: "🦉Pet", value: this.pet?.name || "none", inline: true  },
-      { name: "💳MOBcoin", value: this.mobcoin?.toString() || "none", inline: true  },
+      { name: "💳MobCoin", value: this.mobcoin?.toString() || "none", inline: true  },
+      { name: "🛡Armors", value: armorList || "none", inline: true },
+      { name: "🗡Weapons", value: weaponList || "none", inline: true },
+    );
+
+    if (this.imageUrl)
+      embed.setThumbnail(this.imageUrl);
+
+    if (fighter) {
+
+      const fields1  = ["attack", "hp"] as const;
+      let i = 1;
+
+      for (const field of fields1) {
+
+        const monsterStat = this[field];
+        const playerStat = fighter[field];
+        let stat = monsterStat.toString();
+
+        if (playerStat > monsterStat) {
+          stat += ` ${GREEN_CIRLE}`;
+        } else if (monsterStat > playerStat) {
+          stat += ` ${RED_CIRCLE}`;
+        }
+        
+        if (embed.data.fields != undefined) {
+        embed.data.fields[i].value = inlineCode(stat);
+        }
+        i++;
+      }
+
+      const fields2 = ["armor", "critChance"] as const;
+      for (const field of fields2) {
+
+        const monsterStat = this[field];
+        const playerStat = fighter[field];
+        let stat = formatPercent(monsterStat);
+
+        if (playerStat > monsterStat) {
+          stat += ` ${GREEN_CIRLE}`;
+        } else if (monsterStat > playerStat) {
+          stat += ` ${RED_CIRCLE}`;
+        }
+
+        if (embed.data.fields != undefined) {
+        embed.data.fields[i].value = inlineCode(stat);
+        }
+        i++;
+      }
+
+
+      const fields3 = ["critDamage"] as const;
+      for (const field of fields3) {
+
+        const monsterStat = this[field];
+        const playerStat = fighter[field];
+        let stat = `x${monsterStat.toFixed(1)}`;
+
+        if (playerStat > monsterStat) {
+          stat += ` ${GREEN_CIRLE}`;
+        } else if (monsterStat > playerStat) {
+          stat += ` ${RED_CIRCLE}`;
+        }
+
+        if (embed.data.fields != undefined) {
+        embed.data.fields[i].value = inlineCode(stat);
+        }
+        i++;
+      }
+    }
+
+    return embed;
+  }
+
+  showBoss(fighter?: Fighter) {
+    const armor = formatPercent(this.armor);
+    const critChance = formatPercent(this.critChance);
+
+    const armorList = this.equippedArmors
+      .map((x, i) => `${i + 1}. ${x.name}`)
+      .join("\n");
+
+    const weaponList = this.equippedWeapons
+      .map((x, i) => `${i + 1}. ${x.name}`)
+      .join("\n");
+
+    const embed = new EmbedBuilder()
+      .setTitle("Profile")
+      .setColor(BLUE)
+      .addFields(
+      { name: "Name", value: this.name, inline: false },
+      { name: "📝Experience", value: this.exp?.toString() || "none", inline: true  },
+      { name: "💳MobCoin", value: this.mobcoin?.toString() || "none", inline: true  },
+      { name: "♥HP", value: Math.round(this.hp).toString(), inline: true },
+      { name: "🗡Attack", value: Math.round(this.attack).toString(), inline: true },
+      { name: "🎯Crit Chance", value: critChance, inline: true },
+      { name: "👊Crit Damage", value: `x${this.critDamage.toFixed(1)}`, inline: true },
+      { name: "🛡Armor", value: armor, inline: true },
+      { name: "🧠Skill", value: this.skill?.name || "none", inline: true },
+      { name: "🦉Pet", value: this.pet?.name || "none", inline: true  },
       { name: "🛡Armors", value: armorList || "none", inline: true },
       { name: "🗡Weapons", value: weaponList || "none", inline: true },
     );

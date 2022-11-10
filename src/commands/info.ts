@@ -20,7 +20,7 @@ export const info: Command = {
       .setTitle("Octomob RPG Bot")
       .setColor([0/255.0, 0/255.0, 255/255.0])
       .setDescription(
-        "Battle your friends, Defeat powerful bosses, Buy and upgrade equipment!"
+        "Battle your friends, Defeat powerful bosses, Buy and upgrade equipment!\n📖 Game Manual here --> https://octomob-rpg-bot-docs.vercel.app/"
       )
       .setThumbnail("https://cdn.discordapp.com/attachments/939309405227339776/1039749222486003762/logo-octomob.png")
       .setImage("https://cdn.discordapp.com/attachments/939309405227339776/1039749222867669022/octomob-home-hero.png")

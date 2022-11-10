@@ -3,10 +3,10 @@ import { Command } from "../interfaces/Command";
 import { getUserData } from "../modules/getUserData";
 import { getPrice } from "../modules/getPrice";
 import { checkArmor, checkWeapons } from "../modules/checkItems";
-import { updateArmor, updateMOBcoin, updatePet, updateSkill, updateWeapons } from "../modules/updateUserData";
+import { updateArmor, updateMobCoin, updatePet, updateSkill, updateWeapons } from "../modules/updateUserData";
 import { powerUpCheck } from "../modules/powerUpCheck";
 import { checkItemLevel, checkName, checkPlayerLevel } from "../modules/checkLevel";
-import { alreadyOwned, goodBuyArmorWeaponPet, goodBuySkill, hasBetter, lessMOBcoin, lessLevels } from "../modules/shopEmbeds";
+import { alreadyOwned, goodBuyArmorWeaponPet, goodBuySkill, hasBetter, lessMobCoin, lessLevels } from "../modules/shopEmbeds";
 
 export const buy: Command = {
 
@@ -132,7 +132,7 @@ export const buy: Command = {
           // Check Price Restrictions
 
           else if (user.mobcoin < price) {
-            const embed = await lessMOBcoin();
+            const embed = await lessMobCoin();
             await interaction.reply({ embeds: [embed] });
           }
 
@@ -140,7 +140,7 @@ export const buy: Command = {
 
           else {            
             await updateArmor(user, armor_piece);
-            await updateMOBcoin(user, cost);
+            await updateMobCoin(user, cost);
             const embed = await goodBuyArmorWeaponPet(price, armor_name as string);
             await interaction.reply({ embeds: [embed] });
           }
@@ -182,7 +182,7 @@ export const buy: Command = {
           // Check Price Restrictions
 
           else if (user.mobcoin < price) {
-            const embed = await lessMOBcoin();
+            const embed = await lessMobCoin();
             await interaction.reply({ embeds: [embed] });
           }
 
@@ -190,7 +190,7 @@ export const buy: Command = {
 
           else {            
             await updateWeapons(user, weapon_type);
-            await updateMOBcoin(user, cost);
+            await updateMobCoin(user, cost);
             const embed = await goodBuyArmorWeaponPet(price, weapon_name as string);
             await interaction.reply({ embeds: [embed] });
           }
@@ -217,7 +217,7 @@ export const buy: Command = {
           // Check Price Restrictions
 
           else if (user.mobcoin < price) {
-            const embed = await lessMOBcoin();
+            const embed = await lessMobCoin();
             await interaction.reply({ embeds: [embed] });
           }
 
@@ -225,7 +225,7 @@ export const buy: Command = {
 
           else {            
             await updateSkill(user, skill_type);
-            await updateMOBcoin(user, cost);
+            await updateMobCoin(user, cost);
             const embed = await goodBuySkill(price, skill_name as string);
             await interaction.reply({ embeds: [embed] });
           }
@@ -251,7 +251,7 @@ export const buy: Command = {
           // Check Price Restrictions
 
           else if (user.mobcoin < price) {
-            const embed = await lessMOBcoin();
+            const embed = await lessMobCoin();
             await interaction.reply({ embeds: [embed] });
           }
 
@@ -259,7 +259,7 @@ export const buy: Command = {
 
           else {            
             await updatePet(user, pet_type);
-            await updateMOBcoin(user, cost);
+            await updateMobCoin(user, cost);
             const embed = await goodBuyArmorWeaponPet(price, pet_name as string);
             await interaction.reply({ embeds: [embed] });
           }

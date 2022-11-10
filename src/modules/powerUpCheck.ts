@@ -1,13 +1,169 @@
 import { User } from "discord.js";
 import { Fighter } from "../classes/Fighter";
 import { Level1, Level2, Level3, Level4, Level5, Level6, Level7, Level8, Level9 } from "../classes/Player";
-import { CombatStim, Disarm, Grenade, StunMine  } from "../classes/Skill";
+import { CombatStim, Demoralize, Disarm, Grenade, Nuke, StunMine, Vaporize  } from "../classes/Skill";
 import { Pistol, Rifle, RocketLauncher, Katana, LaserPistol, LaserRifle, PulseCannon, ThermalKatana } from "../classes/Weapon";
 import { BattleArmor, BattleBoots, BattleGloves, BattleHelmet, PowerArmor, PowerBoots, PowerGloves, PowerHelmet } from "../classes/Armor";
-import { AttackDrone, MedicalDrone, EMPDrone, SpyDrone } from "../classes/Pet";
+import { AttackDrone, MedicalDrone, EMPDrone, SpyDrone, ED209, Nuker } from "../classes/Pet";
 import { UserInt } from "../database/models/UserModel";
 import { getUserData } from "./getUserData";
 
+export async function powerUpCheckBoss(boss_name: string) {
+    switch (boss_name as string) {
+        case "hitman": {
+          const boss = new Fighter("Octomob Hitman");
+          boss.hp = 300;
+          boss.attack = 20;
+          boss.critChance = 0.4;
+          boss.imageUrl =
+            "https://cdn.discordapp.com/attachments/939309405227339776/1039730214177095760/image.png";
+          const pistol = new Pistol();
+          const katana = new Katana();
+          const battle_helmet = new BattleHelmet();
+          const battle_boots = new BattleBoots();
+          boss.equipWeapon(pistol);
+          boss.equipWeapon(katana);
+          boss.equipArmor(battle_helmet);
+          boss.equipArmor(battle_boots);
+          boss.exp = 100;
+          boss.mobcoin = 35;
+          return boss;
+        }
+        case "mademan": {
+          const boss = new Fighter("Octomob Made Man");
+          boss.hp = 700;
+          boss.attack = 30;
+          boss.armor = 0.3;
+          boss.critChance = 0.4;
+          boss.imageUrl =
+            "https://cdn.discordapp.com/attachments/939309405227339776/1039733529942184076/image.png";
+          const pistol = new Pistol();
+          const katana = new Katana();
+          boss.equipWeapon(pistol);
+          boss.equipWeapon(katana);
+          const battle_helmet = new BattleHelmet();
+          const battle_boots = new BattleBoots();
+          const battle_gloves = new BattleGloves();
+          const battle_armor = new BattleArmor();
+          boss.equipArmor(battle_helmet);
+          boss.equipArmor(battle_boots);
+          boss.equipArmor(battle_armor);
+          boss.equipArmor(battle_gloves);
+          const medical_drone = new MedicalDrone();
+          medical_drone.setOwner(boss);
+          boss.skill = new CombatStim();
+
+          boss.exp = 250;
+          boss.mobcoin = 105;
+          return boss;
+        }
+        case "flokimusk": {
+          const boss = new Fighter("flokimusk");
+          boss.hp = 1200;
+          boss.attack = 50;
+          boss.armor = 0.3;
+          boss.critChance = 0.4;
+          boss.imageUrl =
+            "https://cryptobullsociety.com/wp-content/uploads/2022/06/Flokimusk-uai-516x516.jpg";
+          const pistol = new Pistol();
+          const katana = new Katana();
+          const rifle = new Rifle();
+          const rocket_launcher = new RocketLauncher();
+          boss.equipWeapon(pistol);
+          boss.equipWeapon(katana);
+          boss.equipWeapon(rifle);
+          boss.equipWeapon(rocket_launcher);
+          const battle_helmet = new BattleHelmet();
+          const battle_boots = new BattleBoots();
+          const battle_gloves = new BattleGloves();
+          const battle_armor = new BattleArmor();
+          boss.equipArmor(battle_helmet);
+          boss.equipArmor(battle_boots);
+          boss.equipArmor(battle_armor);
+          boss.equipArmor(battle_gloves);
+          const attack_drone = new AttackDrone();
+          attack_drone.setOwner(boss);
+          boss.skill = new CombatStim();
+          boss.exp = 600;
+          boss.mobcoin = 200;
+
+          return boss;
+        }
+        case "bullduck": {
+          const boss = new Fighter("BullDuck");
+          boss.hp = 3000;
+          boss.attack = 100;
+          boss.armor = 0.37;
+          boss.critChance = 0.4;
+          boss.imageUrl =
+            "https://cdn.discordapp.com/attachments/939309405227339776/1040079614321639535/image.png";
+          const laser_pistol = new LaserPistol();
+          const laser_rifle = new LaserRifle();
+          const rocket_launcher = new RocketLauncher();
+          const pulse_cannon = new PulseCannon();
+          boss.equipWeapon(laser_pistol);
+          boss.equipWeapon(laser_rifle);
+          boss.equipWeapon(rocket_launcher);
+          boss.equipWeapon(pulse_cannon);
+          const power_helmet = new PowerHelmet();
+          const power_boots = new PowerBoots();
+          const power_gloves = new PowerGloves();
+          const power_armor = new PowerArmor();
+          boss.equipArmor(power_helmet);
+          boss.equipArmor(power_boots);
+          boss.equipArmor(power_armor);
+          boss.equipArmor(power_gloves);
+          const nuker = new Nuker();
+          nuker.setOwner(boss);
+          boss.skill = new Nuke();
+          boss.exp = 1500;
+          boss.mobcoin = 350;
+
+          return boss;
+        }
+        case "donfather": {
+          const boss = new Fighter("The DonFather");
+          boss.hp = 6000;
+          boss.attack = 200;
+          boss.armor = 0.5;
+          boss.critChance = 0.4;
+          boss.imageUrl =
+            "https://cdn.discordapp.com/attachments/939309405227339776/1039729672725991444/image.png";
+          const laser_pistol = new LaserPistol();
+          const thermal_katana = new ThermalKatana();
+          const laser_rifle = new LaserRifle();
+          const pulse_cannon = new PulseCannon();
+          boss.equipWeapon(laser_pistol);
+          boss.equipWeapon(thermal_katana);
+          boss.equipWeapon(laser_rifle);
+          boss.equipWeapon(pulse_cannon);
+          const pistol = new Pistol();
+          const katana = new Katana();
+          const rifle = new Rifle();
+          const rocket_launcher = new RocketLauncher();
+          boss.equipWeapon(pistol);
+          boss.equipWeapon(katana);
+          boss.equipWeapon(rifle);
+          boss.equipWeapon(rocket_launcher);
+          const power_helmet = new PowerHelmet();
+          const power_boots = new PowerBoots();
+          const power_gloves = new PowerGloves();
+          const power_armor = new PowerArmor();
+          boss.equipArmor(power_helmet);
+          boss.equipArmor(power_boots);
+          boss.equipArmor(power_armor);
+          boss.equipArmor(power_gloves);
+          const ed_209 = new ED209();
+          ed_209.setOwner(boss);
+          boss.skill = new Vaporize();
+          boss.exp = 3000;
+          boss.mobcoin = 600;
+
+          return boss;
+        }
+        
+      }
+}
 
 export async function powerUpCheck(player: User, userint: string) {
     const user = await getUserData(userint);
@@ -203,8 +359,8 @@ export async function skillsPetsArmsCheck(fighter: Fighter, user: UserInt) {
     if (user.skill == "stun_mine") {
         fighter.skill = new StunMine();
     }
-    if (user.skill == "grenade") {
-        fighter.skill = new Grenade();
+    if (user.skill == "demoralize") {
+        fighter.skill = new Demoralize();
     }
     if (user.skill == "disarm") {
         fighter.skill = new Disarm();

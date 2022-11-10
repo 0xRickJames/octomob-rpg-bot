@@ -3,7 +3,7 @@ import { GOLD, random } from "./utils";
 import { Fighter } from "./Fighter";
 import cloneDeep from "lodash.clonedeep";
 import { BaseBattle } from "./BaseBattle";
-import { updateBattleWins, updateMOBcoin, updateRaidWins, updateXP } from "../modules/updateUserData";
+import { updateBattleWins, updateMobCoin, updateRaidWins, updateXP } from "../modules/updateUserData";
 
 /** 
  * Battle handles all battle simulation using discord.js's embed. 
@@ -142,13 +142,13 @@ export class Battle extends BaseBattle {
         const winEmbed = new EmbedBuilder()
           .setColor(GOLD)
           .setTitle("Raid Successfull")
-          .setDescription(`${boss.name} has been defeated!\n${this.author.name} has earned ${this.exp} EXP and ${this.mobcoin} MOBcoin! `);
+          .setDescription(`${boss.name} has been defeated!\n${this.author.name} has earned ${this.exp} EXP and ${this.mobcoin} MobCoin! `);
 
         if (boss.imageUrl)
         winEmbed.setThumbnail(boss.imageUrl);
 
         await updateXP(this.user_int, this.exp);
-        await updateMOBcoin(this.user_int, this.mobcoin);
+        await updateMobCoin(this.user_int, this.mobcoin);
         await updateRaidWins(this.user_int);
         await this.reply(winEmbed)
         return this.fighters.find(x => x.id === winner.id)!;
@@ -161,13 +161,13 @@ export class Battle extends BaseBattle {
       const winEmbed = new EmbedBuilder()
       .setColor(GOLD)
       .setTitle("Battle Winner")
-      .setDescription(`${winner.name} has won the battle and earned ${this.exp} EXP and ${this.mobcoin} MOBcoin! `);
+      .setDescription(`${winner.name} has won the battle and earned ${this.exp} EXP and ${this.mobcoin} MobCoin! `);
       
       if (winner.imageUrl)
       winEmbed.setThumbnail(winner.imageUrl);
 
       await updateXP(this.user_int, this.exp);
-      await updateMOBcoin(this.user_int, this.mobcoin);
+      await updateMobCoin(this.user_int, this.mobcoin);
       await updateBattleWins(this.user_int);
       await this.reply(winEmbed)
       return this.fighters.find(x => x.id === winner.id)!;

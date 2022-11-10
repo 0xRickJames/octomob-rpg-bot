@@ -3,7 +3,7 @@ import { Command } from "../interfaces/Command";
 import { Battle } from "../classes/Battle";
 import { powerUpCheck } from "../modules/powerUpCheck";
 import { Fighter } from "../classes/Fighter";
-import { updateMOBcoin, updateXP } from "../modules/updateUserData";
+import { updateMobCoin, updateXP } from "../modules/updateUserData";
 import { getUserData } from "../modules/getUserData";
 import { Katana, Pistol } from "../classes/Weapon";
 import { BattleHelmet, BattleBoots } from "../classes/Armor";
@@ -71,7 +71,7 @@ export const hitman: Command = {
     const player1 = interaction.user as User;
     const player1_data = await getUserData(player1.id);
     await updateXP(player1_data, 5);
-    await updateMOBcoin(player1_data, 1);
+    await updateMobCoin(player1_data, 1);
     const author = await powerUpCheck(player1, player1.id);
     const allies: Fighter[] = [];
     let oppMultiplier = 1;
@@ -81,7 +81,7 @@ export const hitman: Command = {
         const ally = await powerUpCheck(player, player.id);
         const player_data = await getUserData(player.id);
         await updateXP(player_data, 5);
-        await updateMOBcoin(player_data, 1);
+        await updateMobCoin(player_data, 1);
         allies.push(ally);
         oppMultiplier += 1;
       } 
@@ -90,7 +90,7 @@ export const hitman: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMOBcoin(player_data, 1);
+      await updateMobCoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -99,7 +99,7 @@ export const hitman: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMOBcoin(player_data, 1);
+      await updateMobCoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
@@ -108,7 +108,7 @@ export const hitman: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMOBcoin(player_data, 1);
+      await updateMobCoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -117,7 +117,7 @@ export const hitman: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMOBcoin(player_data, 1);
+      await updateMobCoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
@@ -126,7 +126,7 @@ export const hitman: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMOBcoin(player_data, 1);
+      await updateMobCoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -135,7 +135,7 @@ export const hitman: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMOBcoin(player_data, 1);
+      await updateMobCoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
@@ -144,7 +144,7 @@ export const hitman: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMOBcoin(player_data, 1);
+      await updateMobCoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -153,7 +153,7 @@ export const hitman: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMOBcoin(player_data, 1);
+      await updateMobCoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
@@ -173,8 +173,8 @@ export const hitman: Command = {
     boss.equipArmor(battle_boots);
     
     const exp = 100 / oppMultiplier;
-    const fixed_exp = exp.toFixed(0) as unknown as number;
     const mobcoin = 35 / oppMultiplier;
+    const fixed_exp = exp.toFixed(0) as unknown as number;
     const fixed_mobcoin = mobcoin.toFixed(0) as unknown as number;
 
     const battle = new Battle(interaction, [boss, author, ...allies], fixed_exp, fixed_mobcoin, player1_data, author);

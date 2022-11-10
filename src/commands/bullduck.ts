@@ -3,7 +3,7 @@ import { Command } from "../interfaces/Command";
 import { Battle } from "../classes/Battle";
 import { powerUpCheck } from "../modules/powerUpCheck";
 import { Fighter } from "../classes/Fighter";
-import { updateMOBcoin, updateXP } from "../modules/updateUserData";
+import { updateMobCoin, updateXP } from "../modules/updateUserData";
 import { getUserData } from "../modules/getUserData";
 import { LaserPistol, LaserRifle, PulseCannon, RocketLauncher } from "../classes/Weapon";
 import { PowerArmor, PowerBoots, PowerGloves, PowerHelmet } from "../classes/Armor";
@@ -73,7 +73,7 @@ export const bullduck: Command = {
     const player1 = interaction.user as User;
     const player1_data = await getUserData(player1.id);
     await updateXP(player1_data, 5);
-    await updateMOBcoin(player1_data, 1);
+    await updateMobCoin(player1_data, 1);
     const author = await powerUpCheck(player1, player1.id);
     const allies: Fighter[] = [];
     let oppMultiplier = 1;
@@ -83,7 +83,7 @@ export const bullduck: Command = {
         const ally = await powerUpCheck(player, player.id);
         const player_data = await getUserData(player.id);
         await updateXP(player_data, 5);
-        await updateMOBcoin(player_data, 1);
+        await updateMobCoin(player_data, 1);
         allies.push(ally);
         oppMultiplier += 1;
       } 
@@ -92,7 +92,7 @@ export const bullduck: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMOBcoin(player_data, 1);
+      await updateMobCoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -101,7 +101,7 @@ export const bullduck: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMOBcoin(player_data, 1);
+      await updateMobCoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
@@ -110,7 +110,7 @@ export const bullduck: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMOBcoin(player_data, 1);
+      await updateMobCoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -119,7 +119,7 @@ export const bullduck: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMOBcoin(player_data, 1);
+      await updateMobCoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
@@ -128,7 +128,7 @@ export const bullduck: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMOBcoin(player_data, 1);
+      await updateMobCoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -137,7 +137,7 @@ export const bullduck: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMOBcoin(player_data, 1);
+      await updateMobCoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
@@ -146,7 +146,7 @@ export const bullduck: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMOBcoin(player_data, 1);
+      await updateMobCoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -155,7 +155,7 @@ export const bullduck: Command = {
       const ally = await powerUpCheck(player, player.id);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMOBcoin(player_data, 1);
+      await updateMobCoin(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
@@ -164,7 +164,7 @@ export const bullduck: Command = {
     boss.attack = 100;
     boss.armor = 0.37;
     boss.critChance = .40;
-    boss.imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1039733377428889610/image.png";
+    boss.imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1040079614321639535/image.png";
     const laser_pistol = new LaserPistol();
     const laser_rifle = new LaserRifle();
     const rocket_launcher = new RocketLauncher();

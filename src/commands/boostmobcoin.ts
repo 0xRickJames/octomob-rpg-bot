@@ -1,12 +1,12 @@
 import { SlashCommandBuilder, GuildMember, User } from "discord.js";
 import { Command } from "../interfaces/Command";
 import { getUserData } from "../modules/getUserData";
-import { updateMOBcoin, updateXP } from "../modules/updateUserData";
+import { updateMobCoin, updateXP } from "../modules/updateUserData";
 
 export const boostmobcoin: Command = {
   data: new SlashCommandBuilder()
     .setName("boostmobcoin")
-    .setDescription("MOBcoin Booster")
+    .setDescription("MobCoin Booster")
     .addNumberOption((option) =>
       option
       .setName("amount")
@@ -27,8 +27,8 @@ export const boostmobcoin: Command = {
         if (mobcoin != null) { 
           const user = interaction.options.getUser("boostie") as User;
           const  targetUser = await getUserData(user.id);
-          await updateMOBcoin(targetUser, mobcoin.value as number);
-          await interaction.reply(`Boosted MOBcoin ${mobcoin.value} for ${user.username}!`);
+          await updateMobCoin(targetUser, mobcoin.value as number);
+          await interaction.reply(`Boosted MobCoin ${mobcoin.value} for ${user.username}!`);
           }
   
       }
@@ -36,8 +36,8 @@ export const boostmobcoin: Command = {
         const member = interaction.member as GuildMember;
         const  targetUser = await getUserData(member.id);
         if (mobcoin != null) { 
-        await updateMOBcoin(targetUser, mobcoin.value as number);
-        await interaction.reply("Boosted MOBcoin " + mobcoin.value + "!");
+        await updateMobCoin(targetUser, mobcoin.value as number);
+        await interaction.reply("Boosted MobCoin " + mobcoin.value + "!");
         }
       }
 

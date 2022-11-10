@@ -78,10 +78,11 @@ export abstract class Skill extends Base {
         { name: "Name", value: this.name },
         { name: "Intercept Rate", value: inlineCode(interceptRate), inline: true },
         { name: "Description", value: this.description },
-      );
+      )
 
-    if (this.imageUrl)
+    if (this.imageUrl) {
       embed.setThumbnail(this.imageUrl);
+    }
 
     return embed;
   }
@@ -91,7 +92,7 @@ export class Disarm extends Skill {
   name = "Disarm";
   id = "disarm";
   description = "Removes a weapon from opponent";
-  imageURL = "https://cdn.discordapp.com/attachments/983738763668770878/999004005365710968/2A30B39E-6E7B-4F5F-93DC-71A548E0064E.png";
+  imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1001548196310421604/disarm.png";
   fighters: any;
   playerDiedText: any;
   onFighterDead: any;
@@ -146,7 +147,7 @@ export class Vaporize extends Skill {
   name = "Vaporize";
   id = "vaporize";
   description = "Removes any armor/weapons, and deals massive damage";
-  imageURL = "https://cdn.discordapp.com/attachments/984110043014258788/999052496494411777/nuke.png";
+  imageUrl = "https://cdn.discordapp.com/attachments/984110043014258788/999052496494411777/nuke.png";
   interceptRate = 0.5;
   fighters: any;
   playerDiedText: any;
@@ -209,7 +210,7 @@ export class CombatStim extends Skill {
   name = "Combat Stim";
   id = "combat_stim";
   description = "Doubles Attack and Armor";
-  imageURL = "https://cdn.discordapp.com/attachments/983738763668770878/999004006003265736/F36FE759-6F29-428D-BD60-A5946A6A8B75.png";
+  imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1001548256913932358/cstim.png";
 
   use(p1: Fighter, p2: Fighter) {
     p1.attack *= 2;
@@ -238,7 +239,7 @@ export class StunMine extends Skill {
   name = "Stun Mine";
   id = "Stun Mine";
   description = "Debuffs opponents Attack and Armor 90%";
-  iamgeURL = "https://cdn.discordapp.com/attachments/983738763668770878/998951604608831558/41A0A734-8DEE-4AA2-8AC5-59E44F0488FC.png";
+  imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1001548146326905043/smine.png";
 
   use(p1: Fighter, p2: Fighter) {
     p2.attack /= 10;
@@ -271,7 +272,7 @@ export class Grenade extends Skill {
   playerDiedText: any;
   onFighterDead: any;
   msg: any;
-  imageURL = "https://cdn.discordapp.com/attachments/983738763668770878/999004005701271614/B3F5930F-4929-414F-98B0-EF7AD4A9BEA2.png";
+  imageUrl = "https://cdn.discordapp.com/attachments/983738763668770878/999004005701271614/B3F5930F-4929-414F-98B0-EF7AD4A9BEA2.png";
 
   use(p1: Fighter, p2: Fighter) {
 
@@ -326,7 +327,7 @@ export class Nuke extends Skill {
   playerDiedText: any;
   onFighterDead: any;
   msg: any;
-  imageURL = "https://cdn.discordapp.com/attachments/984110043014258788/999052496494411777/nuke.png";
+  imageUrl = "https://cdn.discordapp.com/attachments/984110043014258788/999052496494411777/nuke.png";
 
   use(p1: Fighter, p2: Fighter) {
 
@@ -381,7 +382,7 @@ export class Demoralize extends Skill {
   name = "Demoralize";
   id = "demoralize";
   description = "Removes a skill  from opponent";
-  //imageURL = "https://cdn.discordapp.com/attachments/983738763668770878/999004005365710968/2A30B39E-6E7B-4F5F-93DC-71A548E0064E.png";
+  imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1040067949307887696/demoralize.png";
   fighters: any;
   playerDiedText: any;
   onFighterDead: any;
@@ -449,7 +450,7 @@ export class NoSkill extends Skill {
   name = "No Skill";
   id = "no_skill";
   description = "Lack of a skill";
-  //imageURL = "https://cdn.discordapp.com/attachments/983738763668770878/999004006003265736/F36FE759-6F29-428D-BD60-A5946A6A8B75.png";
+  imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1040074437774561390/noskill.png";
 
   use(p1: Fighter) {
 

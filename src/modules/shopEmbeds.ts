@@ -7,7 +7,7 @@ export async function goodBuyArmorWeaponPet(price: number, item: string) {
 
     const embed = new EmbedBuilder()
     .setTitle("thxforplayin's Black Market")
-    .setDescription(`That will cost ${price} MOBcoin! Thank you for your patronage! You are now the proud owner of our finest ${item}!`)
+    .setDescription(`That will cost ${price} MobCoin! Thank you for your patronage! You are now the proud owner of our finest ${item}!`)
     .setColor(BROWN)
     .setThumbnail(shop_keeper_image)
 
@@ -18,18 +18,18 @@ export async function goodBuySkill(price: number, item: string) {
 
     const embed = new EmbedBuilder()
     .setTitle("thxforplayin's Black Market")
-    .setDescription(`That will cost ${price} MOBcoin! Thank you for your patronage! You can now use the ${item} Skill!`)
+    .setDescription(`That will cost ${price} MobCoin! Thank you for your patronage! You can now use the ${item} Skill!`)
     .setColor(BROWN)
     .setThumbnail(shop_keeper_image)
 
     return embed;
 }
 
-export async function lessMOBcoin() {
+export async function lessMobCoin() {
 
     const embed = new EmbedBuilder()
     .setTitle("thxforplayin's Black Market")
-    .setDescription(`You cannot afford that right now, come back when you've earned some more MOBcoin!`)
+    .setDescription(`You cannot afford that right now, come back when you've earned some more MobCoin!`)
     .setColor(BROWN)
     .setThumbnail(shop_keeper_image)
 
@@ -51,7 +51,7 @@ export async function hasBetter() {
 
     const embed = new EmbedBuilder()
     .setTitle("thxforplayin's Black Market")
-    .setDescription(`Heh, your equipment is already better than that! Save you MOBcoin!`)
+    .setDescription(`Heh, your equipment is already better than that! Save you MobCoin!`)
     .setColor(BROWN) 
     .setThumbnail(shop_keeper_image)
 

@@ -6,8 +6,8 @@ export const updateXP = async (User: UserInt, Exp: number) => {
   return User;
 };
 
-export const updateMOBcoin = async (User: UserInt, MOBcoin: number) => {
-  User.mobcoin += MOBcoin;
+export const updateMobCoin = async (User: UserInt, MobCoin: number) => {
+  User.mobcoin += MobCoin;
   await User.save();
   return User;
 };
