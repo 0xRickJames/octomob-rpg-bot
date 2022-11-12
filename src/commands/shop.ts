@@ -33,7 +33,7 @@ export const shop: Command = {
         {
           name: "🦉Pets",
           value:
-            "-Attack Drones: heals 15 hitpoints - 20 MobCoin\n-Medical Drone: deals 15 - 20 MobCoin\n-EMP Drone: deals 10 damag and destroys drones - 50 MobCoin - level > 3\n-Spy Drone: heals 10 hp and steals armor - 50 MobCoin - level > 3",
+            "-Attack Drones: deals 15 damage - 20 MobCoin\n-Medical Drone: heals 15 hitpoints - 20 MobCoin\n-EMP Drone: deals 10 damage and destroys drones - 50 MobCoin - level > 3\n-Spy Drone: heals 10 hp and steals armor - 50 MobCoin - level > 3",
           inline: false,
         },
         {

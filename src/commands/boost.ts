@@ -51,7 +51,7 @@ export const boost: Command = {
 
    }
    else {
-    interaction.reply({content: "This command is restricted", ephemeral: true})
+    interaction.reply({content: "This command is restricted", ephemeral: true});
    }
 
   },
