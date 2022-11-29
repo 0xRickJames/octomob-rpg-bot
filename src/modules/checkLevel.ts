@@ -113,13 +113,13 @@ export async function checkName(item: string) {
             return "Battle Armor" as string;
         }
         case "battle_helmet": {
-            return "Battler Helmet" as string;
+            return "Battle Helmet" as string;
         }
         case "battle_boots": {
-            return "Battler Boots" as string;
+            return "Battle Boots" as string;
         }
         case "battle_gloves": {
-            return "Battler Gloves" as string;
+            return "Battle Gloves" as string;
         }
         case "katana": {
             return "Katana" as string;
