@@ -19,4 +19,24 @@ import { donfather } from "./donfather";
 import { info } from "./info";
 import { bossprofile } from "./bossprofile";
 
-export const CommandList: Command[] = [boost, profile, battle, raid, boostxp, boostmobcoin, armor, weapon, pet, skill, shop, buy, hitman, mademan, flokimusk, bullduck, donfather, info, bossprofile ];
+export const CommandList: Command[] = [
+  boost,
+  profile,
+  battle,
+  raid,
+  boostxp,
+  boostmobcoin,
+  armor,
+  weapon,
+  pet,
+  skill,
+  shop,
+  buy,
+  hitman,
+  mademan,
+  flokimusk,
+  bullduck,
+  donfather,
+  info,
+  bossprofile,
+];

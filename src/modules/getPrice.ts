@@ -2,39 +2,39 @@ export async function getPrice(Item: string) {
     let price: number;
     switch (Item) {
         case "power_armor": {
-            price = 150;
+            price = 60;
             return price;
         }
         case "power_helmet": {
-            price = 75;
+            price = 30;
             return price;
         }
         case "power_boots": {
-            price = 50;
+            price = 20;
             return price;
         }
         case "power_gloves": {
-            price = 40;
+            price = 16;
             return price;
         }
         case "battle_armor": {
-            price = 50;
+            price = 40;
             return price;
         }
         case "battle_helmet": {
-            price = 25;
+            price = 20;
             return price;
         }
         case "battle_boots": {
-            price = 18;
+            price = 14;
             return price;
         }
         case "battle_gloves": {
-            price = 13;
+            price = 10;
             return price;
         }
         case "katana": {
-            price = 13;
+            price = 12;
             return price;
         }
         case "pistol": {
@@ -46,11 +46,11 @@ export async function getPrice(Item: string) {
             return price;
         }
         case "rocket_launcher": {
-            price = 250;
+            price = 125;
             return price;
         }
         case "thermal_katana": {
-            price = 50;
+            price = 25;
             return price;
         }
         case "laser_pistol": {
@@ -58,11 +58,11 @@ export async function getPrice(Item: string) {
             return price;
         }
         case "laser_rifle": {
-            price = 200;
+            price = 100;
             return price;
         }
         case "pulse_cannon": {
-            price = 500;
+            price = 225;
             return price;
         }
         case "attack_drone": {

@@ -2,6 +2,7 @@ import { Client, GatewayIntentBits } from "discord.js";
 import { connectDatabase } from "./database/connectDatabase";
 import { onInteraction } from "./events/onInteraction";
 import { onReady } from "./events/onReady";
+import "dotenv/config";
 
 (async () => {
 
