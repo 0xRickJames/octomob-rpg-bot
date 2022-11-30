@@ -394,7 +394,7 @@ export class Demoralize extends Skill {
 
     if (p2.skill != null && p2.skill != no_skill){
 
-      const old_skill = p2.skill;
+      const old_skill = p2.skill.name;
       p2.skill = no_skill;
 
       const embed = new EmbedBuilder()
