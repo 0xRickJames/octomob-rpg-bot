@@ -13,7 +13,8 @@ export const skill: Command = {
 
     const player = interaction.user as User;
 
-    const fighter = await powerUpCheck(player, player.id);
+    const member = interaction.guild!.members.cache.get(player.id);
+    const fighter = await powerUpCheck(player, player.id, member!);
     
     if (fighter.skill){
         const skill = fighter.skill;

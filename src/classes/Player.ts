@@ -1,4 +1,4 @@
-import { User } from "discord.js";
+import { User, GuildMember } from "discord.js";
 import { Fighter } from "./Fighter";
 
 /** 
@@ -15,11 +15,11 @@ export class Player extends Fighter {
   user: User;
 
   /** Creates Player instance from User */
-  constructor(user: User) {
+  constructor(user: User, member: GuildMember) {
     super(user.username);
     this.user = user;
     this.id = user.id;
-    this.imageUrl = this.user.displayAvatarURL();
+    this.imageUrl = member.displayAvatarURL();
   }
 }
 
@@ -34,11 +34,11 @@ export class Level1 extends Fighter {
   level = 1;
 
   /** Creates Level1 instance from User */
-  constructor(user: User) {
+  constructor(user: User, member: GuildMember) {
     super(user.username);
     this.user = user;
     this.id = user.id;
-    this.imageUrl = this.user.displayAvatarURL();
+    this.imageUrl = member.displayAvatarURL();
   }
 }
 
@@ -53,11 +53,11 @@ export class Level2 extends Fighter {
   level = 2;
 
   /** Creates Level2 instance from User */
-  constructor(user: User) {
+  constructor(user: User, member: GuildMember) {
     super(user.username);
     this.user = user;
     this.id = user.id;
-    this.imageUrl = this.user.displayAvatarURL();
+    this.imageUrl = member.displayAvatarURL();
   }
 }
 export class Level3 extends Fighter {
@@ -71,11 +71,11 @@ export class Level3 extends Fighter {
   level = 3;
 
   /** Creates Level3 instance from User */
-  constructor(user: User) {
+  constructor(user: User, member: GuildMember) {
     super(user.username);
     this.user = user;
     this.id = user.id;
-    this.imageUrl = this.user.displayAvatarURL();
+    this.imageUrl = member.displayAvatarURL();
   }
 }
 
@@ -90,11 +90,11 @@ export class Level4 extends Fighter {
   level = 4;
 
   /** Creates Level4 instance from User */
-  constructor(user: User) {
+  constructor(user: User, member: GuildMember) {
     super(user.username);
     this.user = user;
     this.id = user.id;
-    this.imageUrl = this.user.displayAvatarURL();
+    this.imageUrl = member.displayAvatarURL();
   }
 }
 
@@ -109,11 +109,11 @@ export class Level5 extends Fighter {
   level = 5;
 
   /** Creates Level5 instance from User */
-  constructor(user: User) {
+  constructor(user: User, member: GuildMember) {
     super(user.username);
     this.user = user;
     this.id = user.id;
-    this.imageUrl = this.user.displayAvatarURL();
+    this.imageUrl = member.displayAvatarURL();
   }
 }
 
@@ -128,11 +128,11 @@ export class Level6 extends Fighter {
   level = 6;
 
   /** Creates Level6 instance from User */
-  constructor(user: User) {
+  constructor(user: User, member: GuildMember) {
     super(user.username);
     this.user = user;
     this.id = user.id;
-    this.imageUrl = this.user.displayAvatarURL();
+    this.imageUrl = member.displayAvatarURL();
   }
 }
 
@@ -147,11 +147,11 @@ export class Level7 extends Fighter {
   level = 7;
 
   /** Creates Level7 instance from User */
-  constructor(user: User) {
+  constructor(user: User, member: GuildMember) {
     super(user.username);
     this.user = user;
     this.id = user.id;
-    this.imageUrl = this.user.displayAvatarURL();
+    this.imageUrl = member.displayAvatarURL();
   }
 }
 
@@ -166,11 +166,11 @@ export class Level8 extends Fighter {
   level = 8;
 
   /** Creates Level8 instance from User */
-  constructor(user: User) {
+  constructor(user: User, member: GuildMember) {
     super(user.username);
     this.user = user;
     this.id = user.id;
-    this.imageUrl = this.user.displayAvatarURL();
+    this.imageUrl = member.displayAvatarURL();
   }
 }
 
@@ -185,11 +185,11 @@ export class Level9 extends Fighter {
   level = 9;
 
   /** Creates Level9 instance from User */
-  constructor(user: User) {
+  constructor(user: User, member: GuildMember) {
     super(user.username);
     this.user = user;
     this.id = user.id;
-    this.imageUrl = this.user.displayAvatarURL();
+    this.imageUrl = member.displayAvatarURL();
   }
 }
 

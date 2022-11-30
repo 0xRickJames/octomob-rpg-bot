@@ -70,7 +70,8 @@ export const battle: Command = {
     const player1_data = await getUserData(player1.id);
     await updateXP(player1_data, 5);
     await updateMobCoin(player1_data, 1);
-    const author = await powerUpCheck(player1, player1.id);
+    const member1 = interaction.guild!.members.cache.get(player1.id);
+    const author = await powerUpCheck(player1, player1.id, member1!);
     let oppMultiplier = 0;
     const opponents: Fighter[] = [];
 
@@ -81,7 +82,8 @@ export const battle: Command = {
       const player2_data = await getUserData(player2.id);
       await updateXP(player2_data, 5);
       await updateMobCoin(player2_data, 1);
-      const opponent1 = await powerUpCheck(player2, player2.id);
+      const member2 = interaction.guild!.members.cache.get(player2.id);
+      const opponent1 = await powerUpCheck(player2, player2.id, member2!);
       opponents.push(opponent1);
       oppMultiplier += 1;
     }
@@ -91,7 +93,8 @@ export const battle: Command = {
       if (player3 == player1 || player3 == player2) {
         //pass
       } else {
-        const opponent = await powerUpCheck(player3, player3.id);
+        const member = interaction.guild!.members.cache.get(player3.id);
+        const opponent = await powerUpCheck(player3, player3.id, member!);
         const player_data = await getUserData(player3.id);
         await updateXP(player_data, 5);
         await updateMobCoin(player_data, 1);
@@ -110,7 +113,8 @@ export const battle: Command = {
       ) {
         //pass
       } else {
-        const opponent = await powerUpCheck(player4, player4.id);
+        const member = interaction.guild!.members.cache.get(player4.id);
+        const opponent = await powerUpCheck(player4, player4.id, member!);
         const player_data = await getUserData(player4.id);
         await updateXP(player_data, 5);
         await updateMobCoin(player_data, 1);
@@ -132,7 +136,8 @@ export const battle: Command = {
       ) {
         //pass
       } else {
-        const opponent = await powerUpCheck(player5, player5.id);
+        const member = interaction.guild!.members.cache.get(player5.id);
+        const opponent = await powerUpCheck(player5, player5.id, member!);
         const player_data = await getUserData(player5.id);
         await updateXP(player_data, 5);
         await updateMobCoin(player_data, 1);
@@ -157,7 +162,8 @@ export const battle: Command = {
       ) {
         //pass
       } else {
-        const opponent = await powerUpCheck(player6, player6.id);
+        const member = interaction.guild!.members.cache.get(player6.id);
+        const opponent = await powerUpCheck(player6, player6.id, member!);
         const player_data = await getUserData(player6.id);
         await updateXP(player_data, 5);
         await updateMobCoin(player_data, 1);
@@ -185,7 +191,8 @@ export const battle: Command = {
       ) {
         //pass
       } else {
-        const opponent = await powerUpCheck(player7, player7.id);
+        const member = interaction.guild!.members.cache.get(player7.id);
+        const opponent = await powerUpCheck(player7, player7.id, member!);
         const player_data = await getUserData(player7.id);
         await updateXP(player_data, 5);
         await updateMobCoin(player_data, 1);
@@ -216,7 +223,8 @@ export const battle: Command = {
       ) {
         //pass
       } else {
-        const opponent = await powerUpCheck(player8, player8.id);
+        const member = interaction.guild!.members.cache.get(player8.id);
+        const opponent = await powerUpCheck(player8, player8.id, member!);
         const player_data = await getUserData(player8.id);
         await updateXP(player_data, 5);
         await updateMobCoin(player_data, 1);
@@ -250,7 +258,8 @@ export const battle: Command = {
       ) {
         //pass
       } else {
-        const opponent = await powerUpCheck(player9, player9.id);
+        const member = interaction.guild!.members.cache.get(player9.id);
+        const opponent = await powerUpCheck(player9, player9.id, member!);
         const player_data = await getUserData(player9.id);
         await updateXP(player_data, 5);
         await updateMobCoin(player_data, 1);
@@ -287,7 +296,8 @@ export const battle: Command = {
       ) {
         //pass
       } else {
-        const opponent = await powerUpCheck(player10, player10.id);
+        const member = interaction.guild!.members.cache.get(player10.id);
+        const opponent = await powerUpCheck(player10, player10.id, member!);
         const player_data = await getUserData(player10.id);
         await updateXP(player_data, 5);
         await updateMobCoin(player_data, 1);

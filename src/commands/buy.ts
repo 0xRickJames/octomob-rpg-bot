@@ -93,7 +93,8 @@ export const buy: Command = {
     const player = interaction.user as User;
     const user = await getUserData(player.id);
     const user_int = interaction.user as User;
-    const fighter = await powerUpCheck(user_int, user_int.id);
+    const member = interaction.guild!.members.cache.get(player.id);
+    const fighter = await powerUpCheck(user_int, user_int.id, member!);
     const level = fighter.level;
 
     if (interaction.options.get("piece")) {

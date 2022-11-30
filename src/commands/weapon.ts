@@ -12,8 +12,8 @@ export const weapon: Command = {
   run: async (interaction) => {
 
     const player = interaction.user as User;
-
-    const fighter = await powerUpCheck(player, player.id);
+    const member = interaction.guild!.members.cache.get(player.id);
+    const fighter = await powerUpCheck(player, player.id, member!);
     
     if (fighter.equippedWeapons.length > 0){
         const equippedWeapons = fighter.equippedWeapons

@@ -1,4 +1,4 @@
-import { User } from "discord.js";
+import { User, GuildMember } from "discord.js";
 import { Fighter } from "../classes/Fighter";
 import { Level1, Level2, Level3, Level4, Level5, Level6, Level7, Level8, Level9 } from "../classes/Player";
 import { CombatStim, Demoralize, Disarm, Grenade, Nuke, StunMine, Vaporize  } from "../classes/Skill";
@@ -165,11 +165,11 @@ export async function powerUpCheckBoss(boss_name: string) {
       }
 }
 
-export async function powerUpCheck(player: User, userint: string) {
+export async function powerUpCheck(player: User, userint: string, member: GuildMember) {
     const user = await getUserData(userint);
     
     if (user.exp >= 35000) {
-        const fighter = new Level9(player);
+        const fighter = new Level9(player, member!);
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 9;
         fighter.exp = user.exp;
@@ -179,7 +179,7 @@ export async function powerUpCheck(player: User, userint: string) {
         return fighter;
     }
     else if (user.exp >= 16000) {
-        const fighter = new Level8(player);
+        const fighter = new Level8(player, member!);
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 8;
         fighter.exp = user.exp;
@@ -189,7 +189,7 @@ export async function powerUpCheck(player: User, userint: string) {
         return fighter;
     }
     else if (user.exp >= 7000) {
-        const fighter = new Level7(player);
+        const fighter = new Level7(player, member!);
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 7;
         fighter.exp = user.exp;
@@ -199,7 +199,7 @@ export async function powerUpCheck(player: User, userint: string) {
         return fighter;
     }
     else if (user.exp >= 3000) {
-        const fighter = new Level6(player);
+        const fighter = new Level6(player, member!);
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 6;
         fighter.exp = user.exp;
@@ -209,7 +209,7 @@ export async function powerUpCheck(player: User, userint: string) {
         return fighter;
     }
     else if (user.exp >= 1350) {
-        const fighter = new Level5(player);
+        const fighter = new Level5(player, member!);
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 5;
         fighter.exp = user.exp;
@@ -219,7 +219,7 @@ export async function powerUpCheck(player: User, userint: string) {
         return fighter;
     }
     else if (user.exp >= 600) {
-        const fighter = new Level4(player);
+        const fighter = new Level4(player, member!);
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 4;
         fighter.exp = user.exp;
@@ -229,7 +229,7 @@ export async function powerUpCheck(player: User, userint: string) {
         return fighter;
     }
     else if (user.exp >= 250) {
-        const fighter = new Level3(player);
+        const fighter = new Level3(player, member!);
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 3;
         fighter.exp = user.exp;
@@ -239,7 +239,7 @@ export async function powerUpCheck(player: User, userint: string) {
         return fighter;
     }
     else if (user.exp >= 100) {
-        const fighter = new Level2(player);
+        const fighter = new Level2(player, member!);
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 2;
         fighter.exp = user.exp;
@@ -249,7 +249,7 @@ export async function powerUpCheck(player: User, userint: string) {
         return fighter;
     }
     else {
-        const fighter = new Level1(player);
+        const fighter = new Level1(player, member!);
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 1;
         fighter.exp = user.exp;

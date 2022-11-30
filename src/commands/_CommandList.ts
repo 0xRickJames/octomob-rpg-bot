@@ -2,7 +2,6 @@ import { Command } from "../interfaces/Command";
 import { boost } from "./boost";
 import { profile } from "./profile";
 import { battle } from "./battle";
-import { raid } from "./raid";
 import { boostxp } from "./boostxp";
 import { boostmobcoin } from "./boostmobcoin";
 import { armor } from "./armor";
@@ -23,7 +22,6 @@ export const CommandList: Command[] = [
   boost,
   profile,
   battle,
-  raid,
   boostxp,
   boostmobcoin,
   armor,

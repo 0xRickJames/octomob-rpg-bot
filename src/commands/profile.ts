@@ -11,8 +11,9 @@ export const profile: Command = {
   run: async (interaction) => {
 
     const player = interaction.user as User;
+    const member = interaction.guild!.members.cache.get(player.id);
 
-    const fighter = powerUpCheck(player, player.id);
+    const fighter = powerUpCheck(player, player.id, member!);
     
     await interaction.reply({ embeds: [(await fighter).show()] });
 

@@ -74,13 +74,15 @@ export const bullduck: Command = {
     const player1_data = await getUserData(player1.id);
     await updateXP(player1_data, 5);
     await updateMobCoin(player1_data, 1);
-    const author = await powerUpCheck(player1, player1.id);
+    const member1 = interaction.guild!.members.cache.get(player1.id);
+    const author = await powerUpCheck(player1, player1.id, member1!);
     const allies: Fighter[] = [];
     let oppMultiplier = 1;
 
     if (interaction.options.getUser("ally1") != null) {
         const player = interaction.options.getUser("ally1") as User;
-        const ally = await powerUpCheck(player, player.id);
+          const member = interaction.guild!.members.cache.get(player.id);
+        const ally = await powerUpCheck(player, player.id, member!);
         const player_data = await getUserData(player.id);
         await updateXP(player_data, 5);
         await updateMobCoin(player_data, 1);
@@ -89,7 +91,8 @@ export const bullduck: Command = {
       } 
     if (interaction.options.getUser("ally2") != null) {
       const player = interaction.options.getUser("ally2") as User;
-      const ally = await powerUpCheck(player, player.id);
+        const member = interaction.guild!.members.cache.get(player.id);
+        const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
       await updateMobCoin(player_data, 1);
@@ -98,7 +101,8 @@ export const bullduck: Command = {
     }    
     if (interaction.options.getUser("ally3") != null) {
       const player = interaction.options.getUser("ally3") as User;
-      const ally = await powerUpCheck(player, player.id);
+        const member = interaction.guild!.members.cache.get(player.id);
+        const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
       await updateMobCoin(player_data, 1);
@@ -107,7 +111,8 @@ export const bullduck: Command = {
     }
     if (interaction.options.getUser("ally4") != null) {
       const player = interaction.options.getUser("ally4") as User;
-      const ally = await powerUpCheck(player, player.id);
+        const member = interaction.guild!.members.cache.get(player.id);
+        const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
       await updateMobCoin(player_data, 1);
@@ -116,7 +121,8 @@ export const bullduck: Command = {
     }    
     if (interaction.options.getUser("ally5") != null) {
       const player = interaction.options.getUser("ally5") as User;
-      const ally = await powerUpCheck(player, player.id);
+        const member = interaction.guild!.members.cache.get(player.id);
+        const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
       await updateMobCoin(player_data, 1);
@@ -125,7 +131,8 @@ export const bullduck: Command = {
     }
     if (interaction.options.getUser("ally6") != null) {
       const player = interaction.options.getUser("ally6") as User;
-      const ally = await powerUpCheck(player, player.id);
+        const member = interaction.guild!.members.cache.get(player.id);
+        const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
       await updateMobCoin(player_data, 1);
@@ -134,7 +141,8 @@ export const bullduck: Command = {
     }    
     if (interaction.options.getUser("ally7") != null) {
       const player = interaction.options.getUser("ally7") as User;
-      const ally = await powerUpCheck(player, player.id);
+        const member = interaction.guild!.members.cache.get(player.id);
+        const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
       await updateMobCoin(player_data, 1);
@@ -143,7 +151,8 @@ export const bullduck: Command = {
     }
     if (interaction.options.getUser("ally8") != null) {
       const player = interaction.options.getUser("ally8") as User;
-      const ally = await powerUpCheck(player, player.id);
+        const member = interaction.guild!.members.cache.get(player.id);
+        const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
       await updateMobCoin(player_data, 1);
@@ -152,7 +161,8 @@ export const bullduck: Command = {
     }    
     if (interaction.options.getUser("ally9") != null) {
       const player = interaction.options.getUser("ally9") as User;
-      const ally = await powerUpCheck(player, player.id);
+        const member = interaction.guild!.members.cache.get(player.id);
+        const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
       await updateMobCoin(player_data, 1);
