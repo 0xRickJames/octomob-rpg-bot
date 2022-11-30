@@ -168,7 +168,7 @@ export const buy: Command = {
 
           // Check if item is owned
 
-          else if (user.equippedArmors.includes(weapon_type)) {
+          else if (user.equippedWeapons.includes(weapon_type)) {
             const embed = await alreadyOwned();
             await interaction.reply({ embeds: [embed] });
           }
