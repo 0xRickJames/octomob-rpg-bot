@@ -13,7 +13,7 @@ export async function checkArmor(user: UserInt, armor: string) {
 
 export async function checkWeapons(user: UserInt, armor: string) {
 
-    if (user.equippedArmors.includes("thermal_katana") && armor == "katana" || user.equippedArmors.includes("laser_pistol") && armor == "pistol" || user.equippedArmors.includes("laser_rifle") && armor == "rifle" || user.equippedArmors.includes("pulse_cannon") && armor == "rocket_launcher" ) {
+    if (user.equippedWeapons.includes("thermal_katana") && armor == "katana" || user.equippedArmors.includes("laser_pistol") && armor == "pistol" || user.equippedArmors.includes("laser_rifle") && armor == "rifle" || user.equippedArmors.includes("pulse_cannon") && armor == "rocket_launcher" ) {
         return true;
     }
     else {
