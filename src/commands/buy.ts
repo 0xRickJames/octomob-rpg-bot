@@ -107,7 +107,7 @@ export const buy: Command = {
           const price = await getPrice(armor_piece);                                
           const armor_name = await checkName(armor_piece);
           const cost = 0 - price;
-          const has_better = await checkArmor(user, armor_piece);
+          const has_better_armor = await checkArmor(user, armor_piece);
 
           // Check Level Restrictions
          
@@ -125,7 +125,7 @@ export const buy: Command = {
 
           // Check if a better item is already owned
 
-          else if (has_better == true) {
+          else if (has_better_armor == true) {
             const embed = await hasBetter();
             await interaction.reply({ embeds: [embed] });
           }
@@ -157,7 +157,7 @@ export const buy: Command = {
           const price = await getPrice(weapon_type);                                
           const weapon_name = await checkName(weapon_type);
           const cost = 0 - price;
-          const has_better = await checkWeapons(user, weapon_type);
+          const has_better_weapon = await checkWeapons(user, weapon_type);
 
           // Check Level Restrictions
          
@@ -168,7 +168,7 @@ export const buy: Command = {
           
           // Check if a better item is already owned
 
-          else if (has_better == true) {
+          else if (has_better_weapon == true) {
             const embed = await hasBetter();
             await interaction.reply({ embeds: [embed] });
           }
