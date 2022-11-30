@@ -165,18 +165,19 @@ export const buy: Command = {
             const embed = await lessLevels();
             await interaction.reply({ embeds: [embed] });
           }
+          
+          // Check if a better item is already owned
+
+          else if (has_better == true) {
+            const embed = await hasBetter();
+            await interaction.reply({ embeds: [embed] });
+          }
+
 
           // Check if item is owned
 
           else if (user.equippedWeapons.includes(weapon_type)) {
             const embed = await alreadyOwned();
-            await interaction.reply({ embeds: [embed] });
-          }
-
-          // Check if a better item is already owned
-
-          else if (has_better == true) {
-            const embed = await hasBetter();
             await interaction.reply({ embeds: [embed] });
           }
 
