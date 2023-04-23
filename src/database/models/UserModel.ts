@@ -3,7 +3,7 @@ import { Document, model, Schema } from "mongoose";
 export interface UserInt extends Document {
   id: string;
   exp: number;
-  mobcoin: number;
+  credits: number;
   equippedArmors: String[];
   equippedWeapons: String[];
   equippedClothes: String[];
@@ -17,7 +17,7 @@ export interface UserInt extends Document {
 export const User = new Schema({
   id: String,
   exp: Number,
-  mobcoin: Number,
+  credits: Number,
   equippedArmors: Array,
   equippedWeapons: Array,
   equippedClothes: Array,

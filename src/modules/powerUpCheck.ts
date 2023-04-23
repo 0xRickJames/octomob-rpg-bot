@@ -26,7 +26,7 @@ export async function powerUpCheckBoss(boss_name: string) {
           boss.equipArmor(battle_helmet);
           boss.equipArmor(battle_boots);
           boss.exp = 100;
-          boss.mobcoin = 35;
+          boss.credits = 35;
           return boss;
         }
         case "mademan": {
@@ -54,7 +54,7 @@ export async function powerUpCheckBoss(boss_name: string) {
           boss.skill = new CombatStim();
 
           boss.exp = 250;
-          boss.mobcoin = 105;
+          boss.credits = 105;
           return boss;
         }
         case "flokimusk": {
@@ -85,7 +85,7 @@ export async function powerUpCheckBoss(boss_name: string) {
           attack_drone.setOwner(boss);
           boss.skill = new CombatStim();
           boss.exp = 600;
-          boss.mobcoin = 200;
+          boss.credits = 200;
 
           return boss;
         }
@@ -117,7 +117,7 @@ export async function powerUpCheckBoss(boss_name: string) {
           nuker.setOwner(boss);
           boss.skill = new Nuke();
           boss.exp = 1500;
-          boss.mobcoin = 350;
+          boss.credits = 350;
 
           return boss;
         }
@@ -157,7 +157,7 @@ export async function powerUpCheckBoss(boss_name: string) {
           ed_209.setOwner(boss);
           boss.skill = new Vaporize();
           boss.exp = 3000;
-          boss.mobcoin = 600;
+          boss.credits = 600;
 
           return boss;
         }
@@ -173,7 +173,7 @@ export async function powerUpCheck(player: User, userint: string, member: GuildM
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 9;
         fighter.exp = user.exp;
-        fighter.mobcoin = user.mobcoin;
+        fighter.credits = user.credits;
         fighter.battleWins = user.battleWins;
         fighter.raidWins = user.raidWins;
         return fighter;
@@ -183,7 +183,7 @@ export async function powerUpCheck(player: User, userint: string, member: GuildM
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 8;
         fighter.exp = user.exp;
-        fighter.mobcoin = user.mobcoin;
+        fighter.credits = user.credits;
         fighter.battleWins = user.battleWins;
         fighter.raidWins = user.raidWins;
         return fighter;
@@ -193,7 +193,7 @@ export async function powerUpCheck(player: User, userint: string, member: GuildM
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 7;
         fighter.exp = user.exp;
-        fighter.mobcoin = user.mobcoin;
+        fighter.credits = user.credits;
         fighter.battleWins = user.battleWins;
         fighter.raidWins = user.raidWins;
         return fighter;
@@ -203,7 +203,7 @@ export async function powerUpCheck(player: User, userint: string, member: GuildM
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 6;
         fighter.exp = user.exp;
-        fighter.mobcoin = user.mobcoin;
+        fighter.credits = user.credits;
         fighter.battleWins = user.battleWins;
         fighter.raidWins = user.raidWins;
         return fighter;
@@ -213,7 +213,7 @@ export async function powerUpCheck(player: User, userint: string, member: GuildM
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 5;
         fighter.exp = user.exp;
-        fighter.mobcoin = user.mobcoin;
+        fighter.credits = user.credits;
         fighter.battleWins = user.battleWins;
         fighter.raidWins = user.raidWins;
         return fighter;
@@ -223,7 +223,7 @@ export async function powerUpCheck(player: User, userint: string, member: GuildM
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 4;
         fighter.exp = user.exp;
-        fighter.mobcoin = user.mobcoin;
+        fighter.credits = user.credits;
         fighter.battleWins = user.battleWins;
         fighter.raidWins = user.raidWins;
         return fighter;
@@ -233,7 +233,7 @@ export async function powerUpCheck(player: User, userint: string, member: GuildM
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 3;
         fighter.exp = user.exp;
-        fighter.mobcoin = user.mobcoin;
+        fighter.credits = user.credits;
         fighter.battleWins = user.battleWins;
         fighter.raidWins = user.raidWins;
         return fighter;
@@ -243,7 +243,7 @@ export async function powerUpCheck(player: User, userint: string, member: GuildM
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 2;
         fighter.exp = user.exp;
-        fighter.mobcoin = user.mobcoin;
+        fighter.credits = user.credits;
         fighter.battleWins = user.battleWins;
         fighter.raidWins = user.raidWins;
         return fighter;
@@ -253,7 +253,7 @@ export async function powerUpCheck(player: User, userint: string, member: GuildM
         await skillsPetsArmsCheck(fighter, user);
         fighter.level = 1;
         fighter.exp = user.exp;
-        fighter.mobcoin = user.mobcoin;
+        fighter.credits = user.credits;
         fighter.battleWins = user.battleWins;
         fighter.raidWins = user.raidWins;
         return fighter; 

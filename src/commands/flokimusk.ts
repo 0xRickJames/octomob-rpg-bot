@@ -3,7 +3,7 @@ import { Command } from "../interfaces/Command";
 import { Battle } from "../classes/Battle";
 import { powerUpCheck } from "../modules/powerUpCheck";
 import { Fighter } from "../classes/Fighter";
-import { updateMobCoin, updateXP } from "../modules/updateUserData";
+import { updateCredits, updateXP } from "../modules/updateUserData";
 import { getUserData } from "../modules/getUserData";
 import { Katana, Pistol, Rifle, RocketLauncher } from "../classes/Weapon";
 import { BattleHelmet, BattleBoots, BattleArmor, BattleGloves } from "../classes/Armor";
@@ -73,7 +73,7 @@ export const flokimusk: Command = {
     const player1 = interaction.user as User;
     const player1_data = await getUserData(player1.id);
     await updateXP(player1_data, 5);
-    await updateMobCoin(player1_data, 1);
+    await updateCredits(player1_data, 1);
     const member1 = interaction.guild!.members.cache.get(player1.id);
     const author = await powerUpCheck(player1, player1.id, member1!);
     const allies: Fighter[] = [];
@@ -85,7 +85,7 @@ export const flokimusk: Command = {
         const ally = await powerUpCheck(player, player.id, member!);
         const player_data = await getUserData(player.id);
         await updateXP(player_data, 5);
-        await updateMobCoin(player_data, 1);
+        await updateCredits(player_data, 1);
         allies.push(ally);
         oppMultiplier += 1;
       } 
@@ -95,7 +95,7 @@ export const flokimusk: Command = {
         const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMobCoin(player_data, 1);
+      await updateCredits(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -105,7 +105,7 @@ export const flokimusk: Command = {
         const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMobCoin(player_data, 1);
+      await updateCredits(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
@@ -115,7 +115,7 @@ export const flokimusk: Command = {
         const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMobCoin(player_data, 1);
+      await updateCredits(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -125,7 +125,7 @@ export const flokimusk: Command = {
         const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMobCoin(player_data, 1);
+      await updateCredits(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
@@ -135,7 +135,7 @@ export const flokimusk: Command = {
         const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMobCoin(player_data, 1);
+      await updateCredits(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -145,7 +145,7 @@ export const flokimusk: Command = {
         const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMobCoin(player_data, 1);
+      await updateCredits(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
@@ -155,7 +155,7 @@ export const flokimusk: Command = {
         const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMobCoin(player_data, 1);
+      await updateCredits(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }    
@@ -165,7 +165,7 @@ export const flokimusk: Command = {
         const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateMobCoin(player_data, 1);
+      await updateCredits(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
@@ -198,10 +198,10 @@ export const flokimusk: Command = {
     
     const exp = 600 / oppMultiplier;
     const fixed_exp = exp.toFixed(0) as unknown as number;
-    const mobcoin = 200 / oppMultiplier;
-    const fixed_mobcoin = mobcoin.toFixed(0) as unknown as number;
+    const credits = 200 / oppMultiplier;
+    const fixed_credits = credits.toFixed(0) as unknown as number;
 
-    const battle = new Battle(interaction, [boss, author, ...allies], fixed_exp, fixed_mobcoin, player1_data, author);
+    const battle = new Battle(interaction, [boss, author, ...allies], fixed_exp, fixed_credits, player1_data, author);
     battle.setBoss(boss);     
     await battle.run();
 

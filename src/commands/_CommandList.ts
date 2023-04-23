@@ -3,7 +3,7 @@ import { boost } from "./boost";
 import { profile } from "./profile";
 import { battle } from "./battle";
 import { boostxp } from "./boostxp";
-import { boostmobcoin } from "./boostmobcoin";
+import { boostcredits } from "./boostcredits";
 import { armor } from "./armor";
 import { weapon } from "./weapon";
 import { pet } from "./pet";
@@ -23,7 +23,7 @@ export const CommandList: Command[] = [
   profile,
   battle,
   boostxp,
-  boostmobcoin,
+  boostcredits,
   armor,
   weapon,
   pet,

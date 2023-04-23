@@ -11,7 +11,7 @@ interface PlayerGameStat {
 export abstract class BaseBattle {
   protected round = 0;
   protected exp = 0;
-  protected mobcoin = 0;
+  protected credits = 0;
   protected author!: Fighter;
   protected user_int!: UserInt;
   protected i: CommandInteraction;
@@ -31,11 +31,11 @@ export abstract class BaseBattle {
    * @param {CommandInteraction} i - discord.js's CommandInteraction
    * @param {Fighter[]} fighters - array of Fighter's object
    * */
-  constructor(i: CommandInteraction, fighters: Fighter[], exp: number, mobcoin: number, user_int: UserInt, author: Fighter) {
+  constructor(i: CommandInteraction, fighters: Fighter[], exp: number, credits: number, user_int: UserInt, author: Fighter) {
     this.i = i;
     this.fighters = [...new Set(fighters)];
     this.exp = exp;
-    this.mobcoin = mobcoin;
+    this.credits = credits;
     this.user_int = user_int;
     this.author = author;
   }

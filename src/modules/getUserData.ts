@@ -6,7 +6,7 @@ export const getUserData = async (userId: string): Promise<UserInt> => {
     (await UserModel.create({
       id: userId,
       exp: 0,
-      mobcoin: 0,
+      credits: 0,
       equippedArmors: [],
       equippedWeapons: [],
       equippedClothes: [],

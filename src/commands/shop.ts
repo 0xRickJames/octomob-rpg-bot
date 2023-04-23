@@ -21,25 +21,25 @@ export const shop: Command = {
         {
           name: "🛡Armor🛡",
           value:
-            "-**Battle Armor:** +20% damage reduction - **40 MobCoin**\n-**Battle Boots:** +7% damage reduction - **14 MobCoin**\n-**Battle Helmet:** +10% damage reduction - **20 MobCoin**\n-**Battle Gloves:** +5% damage reduction - **10 MobCoin**\n-**Power Armor:** +30% damage reduction - **60 MobCoin** - level > 3\n-**Power Boots:** +10% damage reduction - **20 MobCoin** - level > 3\n-**Power Helmet:** +15% damage reduction - **30 MobCoin** - level > 3\n-**Power Gloves:** +8% damage reduction - **16 MobCoin** - level > 3",
+            "-**Battle Armor:** +20% damage reduction - **40 Credits**\n-**Battle Boots:** +7% damage reduction - **14 Credits**\n-**Battle Helmet:** +10% damage reduction - **20 Credits**\n-**Battle Gloves:** +5% damage reduction - **10 Credits**\n-**Power Armor:** +30% damage reduction - **60 Credits** - level > 3\n-**Power Boots:** +10% damage reduction - **20 Credits** - level > 3\n-**Power Helmet:** +15% damage reduction - **30 Credits** - level > 3\n-**Power Gloves:** +8% damage reduction - **16 Credits** - level > 3",
           inline: false,
         },
         {
           name: "🗡Weapons🗡",
           value:
-            "-**Katana:** +5 to damage - **12 MobCoin**\n-**Pistol:** +10 to damage - **25 MobCoin**\n-**Rifle:** +20 to damage - **50 MobCoin**\n-**Rocket Launcher:** +50 to damage - **125 MobCoin**\n-**Thermal Katana:** +10 to damage - **25 MobCoin** - level > 3\n-**Laser Pistol:** +20 to damage - **50 MobCoin** - level > 3\n-**Laser Rifle:** +40 to damage - **100 MobCoin** - level > 3\n-**Pulse Cannon:** +100 to damage - **225 MobCoin** - level > 3",
+            "-**Katana:** +5 to damage - **12 Credits**\n-**Pistol:** +10 to damage - **25 Credits**\n-**Rifle:** +20 to damage - **50 Credits**\n-**Rocket Launcher:** +50 to damage - **125 Credits**\n-**Thermal Katana:** +10 to damage - **25 Credits** - level > 3\n-**Laser Pistol:** +20 to damage - **50 Credits** - level > 3\n-**Laser Rifle:** +40 to damage - **100 Credits** - level > 3\n-**Pulse Cannon:** +100 to damage - **225 Credits** - level > 3",
           inline: false,
         },
         {
           name: "🦉Pets🦉",
           value:
-            "-**Attack Drones:** deals 15 damage - **20 MobCoin**\n-**Medical Drone:** heals 15 hitpoints - **20 MobCoin**\n-**EMP Drone:** deals 10 dmg and kills pets - **50 MobCoin** - level > 3\n-**Spy Drone:** heals 10 hp and steals armor - **50 MobCoin** - level > 3",
+            "-**Attack Drones:** deals 15 damage - **20 Credits**\n-**Medical Drone:** heals 15 hitpoints - **20 Credits**\n-**EMP Drone:** deals 10 dmg and kills pets - **50 Credits** - level > 3\n-**Spy Drone:** heals 10 hp and steals armor - **50 Credits** - level > 3",
           inline: false,
         },
         {
           name: "🧠Skills🧠",
           value:
-            "-**Combat Stim:** doubles attack and armor - **20 MobCoin**\n-**Stun Mine:** debuffs attack and armor 90% - **20 MobCoin**\n-**Disarm:** removes a weapon - **50 MobCoin** - level > 3\n-**Demoralize:** removes a skill - **50 MobCoin** - level > 3",
+            "-**Combat Stim:** doubles attack and armor - **20 Credits**\n-**Stun Mine:** debuffs attack and armor 90% - **20 Credits**\n-**Disarm:** removes a weapon - **50 Credits** - level > 3\n-**Demoralize:** removes a skill - **50 Credits** - level > 3",
           inline: false,
           },
         { name: "⚠WARNING!⚠", value: "**NO REFUNDS!!**\nONE OF EACH **WEAPON** AND **ARMOR** PIECE AT A TIME!!.\nONE **SKILL** AND **PET** AT A TIME!!", inline: false }

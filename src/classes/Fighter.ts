@@ -32,8 +32,8 @@ export class Fighter extends Base {
   id: string;
   /** Experience Points */
   exp?: number;
-  /** MobCoin Points */
-  mobcoin?: number;
+  /** Credits Points */
+  credits?: number;
   /** Level */
   level?: number;
   /** Damage dealt when attack */
@@ -115,7 +115,7 @@ export class Fighter extends Base {
       { name: "👊Crit Damage", value: `x${this.critDamage.toFixed(1)}`, inline: true },
       { name: "🧠Skill", value: this.skill?.name || "none", inline: true },
       { name: "🦉Pet", value: this.pet?.name || "none", inline: true  },
-      { name: "💳MobCoin", value: this.mobcoin?.toString() || "none", inline: true  },
+      { name: "💳Credits", value: this.credits?.toString() || "none", inline: true  },
       { name: "🛡Armors", value: armorList || "none", inline: true },
       { name: "🗡Weapons", value: weaponList || "none", inline: true },
     );
@@ -207,7 +207,7 @@ export class Fighter extends Base {
       .addFields(
       { name: "Name", value: this.name, inline: false },
       { name: "📝Experience", value: this.exp?.toString() || "none", inline: true  },
-      { name: "💳MobCoin", value: this.mobcoin?.toString() || "none", inline: true  },
+      { name: "💳Credits", value: this.credits?.toString() || "none", inline: true  },
       { name: "♥HP", value: Math.round(this.hp).toString(), inline: true },
       { name: "🗡Attack", value: Math.round(this.attack).toString(), inline: true },
       { name: "🎯Crit Chance", value: critChance, inline: true },

@@ -1,16 +1,16 @@
 import { SlashCommandBuilder, GuildMember, User } from "discord.js";
 import { Command } from "../interfaces/Command";
 import { getUserData } from "../modules/getUserData";
-import { updateMobCoin, updateXP } from "../modules/updateUserData";
+import { updateCredits, updateXP } from "../modules/updateUserData";
 
-export const boostmobcoin: Command = {
+export const boostcredits: Command = {
   data: new SlashCommandBuilder()
-    .setName("boostmobcoin")
-    .setDescription("MobCoin Booster")
+    .setName("boostcredits")
+    .setDescription("Credits Booster")
     .addNumberOption((option) =>
       option
       .setName("amount")
-      .setDescription("The amount of mobcoin you want to add")
+      .setDescription("The amount of credits you want to add")
       .setRequired(true)
     ).addUserOption((option) =>
     option
@@ -22,22 +22,22 @@ export const boostmobcoin: Command = {
 
     const author = interaction.member as GuildMember;
     if (author.roles.cache.has("1039934064376938637")) {
-      const mobcoin = interaction.options.get("amount");
+      const credits = interaction.options.get("amount");
       if (interaction.options.getUser("boostie")) {
-        if (mobcoin != null) { 
+        if (credits != null) { 
           const user = interaction.options.getUser("boostie") as User;
           const  targetUser = await getUserData(user.id);
-          await updateMobCoin(targetUser, mobcoin.value as number);
-          await interaction.reply(`Boosted MobCoin ${mobcoin.value} for ${user.username}!`);
+          await updateCredits(targetUser, credits.value as number);
+          await interaction.reply(`Boosted Credits ${credits.value} for ${user.username}!`);
           }
   
       }
       else {
         const member = interaction.member as GuildMember;
         const  targetUser = await getUserData(member.id);
-        if (mobcoin != null) { 
-        await updateMobCoin(targetUser, mobcoin.value as number);
-        await interaction.reply("Boosted MobCoin " + mobcoin.value + "!");
+        if (credits != null) { 
+        await updateCredits(targetUser, credits.value as number);
+        await interaction.reply("Boosted Credits " + credits.value + "!");
         }
       }
 
