@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a simple RPG (Role-Playing Game) Discord bot built using Node.js and the Discord.js library. The bot allows users to play an embed based RPG game, in which they can purcahse items, battle others in the server, and fight boss battle(with or without others from the server).
+This is a simple RPG Discord bot built using Node.js and the Discord.js library. The bot allows users to play an embed based RPG game, in which they can purcahse items, battle others in the server, and fight boss battles (with or without others from the server).
 
 ## Installation
 
