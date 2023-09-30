@@ -3,7 +3,7 @@ import { Command } from "../interfaces/Command";
 import { Battle } from "../classes/Battle";
 import { powerUpCheck } from "../modules/powerUpCheck";
 import { Fighter } from "../classes/Fighter";
-import { updateCredits, updateXP } from "../modules/updateUserData";
+import { updateGold, updateXP } from "../modules/updateUserData";
 import { getUserData } from "../modules/getUserData";
 import { id } from "common-tags";
 
@@ -69,7 +69,7 @@ export const battle: Command = {
     const player1 = interaction.user as User;
     const player1_data = await getUserData(player1.id);
     await updateXP(player1_data, 5);
-    await updateCredits(player1_data, 1);
+    await updateGold(player1_data, 1);
     const member1 = interaction.guild!.members.cache.get(player1.id);
     const author = await powerUpCheck(player1, player1.id, member1!);
     let oppMultiplier = 0;
@@ -81,7 +81,7 @@ export const battle: Command = {
     } else {
       const player2_data = await getUserData(player2.id);
       await updateXP(player2_data, 5);
-      await updateCredits(player2_data, 1);
+      await updateGold(player2_data, 1);
       const member2 = interaction.guild!.members.cache.get(player2.id);
       const opponent1 = await powerUpCheck(player2, player2.id, member2!);
       opponents.push(opponent1);
@@ -97,7 +97,7 @@ export const battle: Command = {
         const opponent = await powerUpCheck(player3, player3.id, member!);
         const player_data = await getUserData(player3.id);
         await updateXP(player_data, 5);
-        await updateCredits(player_data, 1);
+        await updateGold(player_data, 1);
         opponents.push(opponent);
         oppMultiplier += 1;
       }
@@ -117,7 +117,7 @@ export const battle: Command = {
         const opponent = await powerUpCheck(player4, player4.id, member!);
         const player_data = await getUserData(player4.id);
         await updateXP(player_data, 5);
-        await updateCredits(player_data, 1);
+        await updateGold(player_data, 1);
         opponents.push(opponent);
         oppMultiplier += 1;
       }
@@ -130,7 +130,7 @@ export const battle: Command = {
         (interaction.options.getUser("opponent2") != null &&
           interaction.options.getUser("opponent4") ==
             interaction.options.getUser("opponent2")) ||
-            (interaction.options.getUser("opponent3") != null &&
+        (interaction.options.getUser("opponent3") != null &&
           interaction.options.getUser("opponent4") ==
             interaction.options.getUser("opponent3"))
       ) {
@@ -140,7 +140,7 @@ export const battle: Command = {
         const opponent = await powerUpCheck(player5, player5.id, member!);
         const player_data = await getUserData(player5.id);
         await updateXP(player_data, 5);
-        await updateCredits(player_data, 1);
+        await updateGold(player_data, 1);
         opponents.push(opponent);
         oppMultiplier += 1;
       }
@@ -153,10 +153,10 @@ export const battle: Command = {
         (interaction.options.getUser("opponent2") != null &&
           interaction.options.getUser("opponent5") ==
             interaction.options.getUser("opponent2")) ||
-            (interaction.options.getUser("opponent3") != null &&
+        (interaction.options.getUser("opponent3") != null &&
           interaction.options.getUser("opponent5") ==
             interaction.options.getUser("opponent3")) ||
-            (interaction.options.getUser("opponent4") != null &&
+        (interaction.options.getUser("opponent4") != null &&
           interaction.options.getUser("opponent5") ==
             interaction.options.getUser("opponent4"))
       ) {
@@ -166,7 +166,7 @@ export const battle: Command = {
         const opponent = await powerUpCheck(player6, player6.id, member!);
         const player_data = await getUserData(player6.id);
         await updateXP(player_data, 5);
-        await updateCredits(player_data, 1);
+        await updateGold(player_data, 1);
         opponents.push(opponent);
         oppMultiplier += 1;
       }
@@ -179,13 +179,13 @@ export const battle: Command = {
         (interaction.options.getUser("opponent2") != null &&
           interaction.options.getUser("opponent6") ==
             interaction.options.getUser("opponent2")) ||
-            (interaction.options.getUser("opponent3") != null &&
+        (interaction.options.getUser("opponent3") != null &&
           interaction.options.getUser("opponent6") ==
             interaction.options.getUser("opponent3")) ||
-            (interaction.options.getUser("opponent4") != null &&
+        (interaction.options.getUser("opponent4") != null &&
           interaction.options.getUser("opponent6") ==
             interaction.options.getUser("opponent4")) ||
-            (interaction.options.getUser("opponent5") != null &&
+        (interaction.options.getUser("opponent5") != null &&
           interaction.options.getUser("opponent6") ==
             interaction.options.getUser("opponent5"))
       ) {
@@ -195,7 +195,7 @@ export const battle: Command = {
         const opponent = await powerUpCheck(player7, player7.id, member!);
         const player_data = await getUserData(player7.id);
         await updateXP(player_data, 5);
-        await updateCredits(player_data, 1);
+        await updateGold(player_data, 1);
         opponents.push(opponent);
         oppMultiplier += 1;
       }
@@ -208,16 +208,16 @@ export const battle: Command = {
         (interaction.options.getUser("opponent2") != null &&
           interaction.options.getUser("opponent7") ==
             interaction.options.getUser("opponent2")) ||
-            (interaction.options.getUser("opponent3") != null &&
+        (interaction.options.getUser("opponent3") != null &&
           interaction.options.getUser("opponent7") ==
             interaction.options.getUser("opponent3")) ||
-            (interaction.options.getUser("opponent4") != null &&
+        (interaction.options.getUser("opponent4") != null &&
           interaction.options.getUser("opponent7") ==
             interaction.options.getUser("opponent4")) ||
-            (interaction.options.getUser("opponent5") != null &&
+        (interaction.options.getUser("opponent5") != null &&
           interaction.options.getUser("opponent7") ==
             interaction.options.getUser("opponent5")) ||
-            (interaction.options.getUser("opponent6") != null &&
+        (interaction.options.getUser("opponent6") != null &&
           interaction.options.getUser("opponent7") ==
             interaction.options.getUser("opponent6"))
       ) {
@@ -227,7 +227,7 @@ export const battle: Command = {
         const opponent = await powerUpCheck(player8, player8.id, member!);
         const player_data = await getUserData(player8.id);
         await updateXP(player_data, 5);
-        await updateCredits(player_data, 1);
+        await updateGold(player_data, 1);
         opponents.push(opponent);
         oppMultiplier += 1;
       }
@@ -240,19 +240,19 @@ export const battle: Command = {
         (interaction.options.getUser("opponent2") != null &&
           interaction.options.getUser("opponent8") ==
             interaction.options.getUser("opponent2")) ||
-            (interaction.options.getUser("opponent3") != null &&
+        (interaction.options.getUser("opponent3") != null &&
           interaction.options.getUser("opponent8") ==
             interaction.options.getUser("opponent3")) ||
-            (interaction.options.getUser("opponent4") != null &&
+        (interaction.options.getUser("opponent4") != null &&
           interaction.options.getUser("opponent8") ==
             interaction.options.getUser("opponent4")) ||
-            (interaction.options.getUser("opponent5") != null &&
+        (interaction.options.getUser("opponent5") != null &&
           interaction.options.getUser("opponent8") ==
             interaction.options.getUser("opponent5")) ||
-            (interaction.options.getUser("opponent6") != null &&
+        (interaction.options.getUser("opponent6") != null &&
           interaction.options.getUser("opponent8") ==
             interaction.options.getUser("opponent6")) ||
-            (interaction.options.getUser("opponent7") != null &&
+        (interaction.options.getUser("opponent7") != null &&
           interaction.options.getUser("opponent8") ==
             interaction.options.getUser("opponent7"))
       ) {
@@ -262,7 +262,7 @@ export const battle: Command = {
         const opponent = await powerUpCheck(player9, player9.id, member!);
         const player_data = await getUserData(player9.id);
         await updateXP(player_data, 5);
-        await updateCredits(player_data, 1);
+        await updateGold(player_data, 1);
         opponents.push(opponent);
         oppMultiplier += 1;
       }
@@ -275,22 +275,22 @@ export const battle: Command = {
         (interaction.options.getUser("opponent2") != null &&
           interaction.options.getUser("opponent9") ==
             interaction.options.getUser("opponent2")) ||
-            (interaction.options.getUser("opponent3") != null &&
+        (interaction.options.getUser("opponent3") != null &&
           interaction.options.getUser("opponent9") ==
             interaction.options.getUser("opponent3")) ||
-            (interaction.options.getUser("opponent4") != null &&
+        (interaction.options.getUser("opponent4") != null &&
           interaction.options.getUser("opponent9") ==
             interaction.options.getUser("opponent4")) ||
-            (interaction.options.getUser("opponent5") != null &&
+        (interaction.options.getUser("opponent5") != null &&
           interaction.options.getUser("opponent9") ==
             interaction.options.getUser("opponent5")) ||
-            (interaction.options.getUser("opponent6") != null &&
+        (interaction.options.getUser("opponent6") != null &&
           interaction.options.getUser("opponent9") ==
             interaction.options.getUser("opponent6")) ||
-            (interaction.options.getUser("opponent7") != null &&
+        (interaction.options.getUser("opponent7") != null &&
           interaction.options.getUser("opponent9") ==
             interaction.options.getUser("opponent7")) ||
-            (interaction.options.getUser("opponent8") != null &&
+        (interaction.options.getUser("opponent8") != null &&
           interaction.options.getUser("opponent9") ==
             interaction.options.getUser("opponent8"))
       ) {
@@ -300,12 +300,12 @@ export const battle: Command = {
         const opponent = await powerUpCheck(player10, player10.id, member!);
         const player_data = await getUserData(player10.id);
         await updateXP(player_data, 5);
-        await updateCredits(player_data, 1);
+        await updateGold(player_data, 1);
         opponents.push(opponent);
         oppMultiplier += 1;
       }
     }
-    
+
     if (opponents != null) {
       if (opponents.length == 0) {
         interaction.reply({
@@ -314,12 +314,12 @@ export const battle: Command = {
         });
       } else {
         const exp = 15 * oppMultiplier;
-        const credits = 3 * oppMultiplier;
+        const gold = 3 * oppMultiplier;
         const battle = new Battle(
           interaction,
           [author, ...opponents],
           exp,
-          credits,
+          gold,
           player1_data,
           author
         );

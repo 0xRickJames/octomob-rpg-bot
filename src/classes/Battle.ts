@@ -3,10 +3,15 @@ import { GOLD, random } from "./utils";
 import { Fighter } from "./Fighter";
 import cloneDeep from "lodash.clonedeep";
 import { BaseBattle } from "./BaseBattle";
-import { updateBattleWins, updateCredits, updateRaidWins, updateXP } from "../modules/updateUserData";
+import {
+  updateBattleWins,
+  updateGold,
+  updateRaidWins,
+  updateXP,
+} from "../modules/updateUserData";
 
-/** 
- * Battle handles all battle simulation using discord.js's embed. 
+/**
+ * Battle handles all battle simulation using discord.js's embed.
  * */
 export class Battle extends BaseBattle {
   protected boss?: Fighter;
@@ -15,7 +20,7 @@ export class Battle extends BaseBattle {
   /** Time interval to change to next frame (in milliseconds by default is 6000) */
   interval = 4000;
 
-  /** 
+  /**
    * Change the battle to raid mode. Raid mode only have one opponent that is
    * the boss. If the boss dies, the battle ends.
    *
@@ -26,27 +31,26 @@ export class Battle extends BaseBattle {
     return this;
   }
 
-  /** 
+  /**
    * Executes callback when Fighter dead during battle.
    * */
   setOnFighterDead(cb: (fighter: Fighter) => void) {
     this.onFighterDead = cb;
   }
 
-  /** 
+  /**
    * Starts the battle simulation. It will throw error if the array of
    * Fighters is less than 2. This method will return the Fighter object who won
    * the battle.
-   * 
+   *
    * @returns Fighter
-   * 
+   *
    * */
   async run() {
-
     if (this.fighters.length <= 1)
       throw new Error("cannot battle with 1 or less player");
 
-    const battleQueue = this.fighters.map(x => cloneDeep(x));
+    const battleQueue = this.fighters.map((x) => cloneDeep(x));
     await this.reply("Starting battle");
 
     while (battleQueue.length !== 1) {
@@ -57,7 +61,7 @@ export class Battle extends BaseBattle {
 
       const boss = this.boss;
       if (boss && player.id !== boss.id) {
-        const bossState = battleQueue.find(x => x.id === boss.id);
+        const bossState = battleQueue.find((x) => x.id === boss.id);
         if (bossState) {
           opponent = bossState;
         } else {
@@ -72,41 +76,41 @@ export class Battle extends BaseBattle {
         const skillEmbed = player.skill!.use(player, opponent);
 
         await this.updateEmbed(skillEmbed);
-        this.showBattle && await this.sleep();
+        this.showBattle && (await this.sleep());
       }
 
       if (opponentSkillIntercept) {
         const skillEmbed = opponent.skill!.use(opponent, player);
 
         await this.updateEmbed(skillEmbed);
-        this.showBattle && await this.sleep();
+        this.showBattle && (await this.sleep());
       }
 
-      if (player.pet?.isIntercept()) {
-        const petEmbed = player.pet.intercept(opponent, player);
-        
-        await this.updateEmbed(petEmbed);
-        this.showBattle && await this.sleep();
+      if (player.spell?.isIntercept()) {
+        const spellEmbed = player.spell.intercept(opponent, player);
+
+        await this.updateEmbed(spellEmbed);
+        this.showBattle && (await this.sleep());
       }
 
       const battleEmbed = this.attack(player, opponent);
 
       if (this.showBattle) {
-
         for (const p1 of this.fighters) {
-          const currHealth = [player, ...battleQueue].find(x => x.id === p1.id)?.hp;
+          const currHealth = [player, ...battleQueue].find(
+            (x) => x.id === p1.id
+          )?.hp;
           if (currHealth !== undefined) {
             this.progressBar(battleEmbed, p1.name, currHealth, p1.hp);
           }
         }
-
       }
 
       await this.updateEmbed(battleEmbed);
       battleQueue.push(player);
 
       if (opponent.hp <= 0) {
-        const index = battleQueue.findIndex(x => x.id === opponent.id);
+        const index = battleQueue.findIndex((x) => x.id === opponent.id);
         battleQueue.splice(index, 1);
 
         let text = `${opponent.name} has died in the battle`;
@@ -119,7 +123,7 @@ export class Battle extends BaseBattle {
         this.logBattle && console.log(text);
 
         if (battleQueue.length === 1) break;
-      } 
+      }
 
       if (playerSkillIntercept) {
         player.skill!.close(player, opponent);
@@ -129,7 +133,7 @@ export class Battle extends BaseBattle {
         opponent.skill!.close(opponent, player);
       }
 
-      this.showBattle && await this.sleep();
+      this.showBattle && (await this.sleep());
     }
 
     const winner = battleQueue[0];
@@ -137,58 +141,47 @@ export class Battle extends BaseBattle {
     const boss = this.boss;
     // if the boss loses
     if (boss && winner.id !== boss.id) {
-
-    
-        const winEmbed = new EmbedBuilder()
-          .setColor(GOLD)
-          .setTitle("Raid Successfull")
-          .setDescription(`${boss.name} has been defeated!\n${this.author.name} has earned ${this.exp} EXP and ${this.credits} Credits! `);
-
-        if (boss.imageUrl)
-        winEmbed.setThumbnail(boss.imageUrl);
-
-        await updateXP(this.user_int, this.exp);
-        await updateCredits(this.user_int, this.credits);
-        await updateRaidWins(this.user_int);
-        await this.reply(winEmbed)
-        return this.fighters.find(x => x.id === winner.id)!;
-      
-    }
-    else {
-
-      if (winner.id === this.author.id) {
-        
       const winEmbed = new EmbedBuilder()
-      .setColor(GOLD)
-      .setTitle("Battle Winner")
-      .setDescription(`${winner.name} has won the battle and earned ${this.exp} EXP and ${this.credits} Credits! `);
-      
-      if (winner.imageUrl)
-      winEmbed.setThumbnail(winner.imageUrl);
+        .setColor(GOLD)
+        .setTitle("Raid Successfull")
+        .setDescription(
+          `${boss.name} has been defeated!\n${this.author.name} has earned ${this.exp} EXP and ${this.gold} Gold! `
+        );
+
+      if (boss.imageUrl) winEmbed.setThumbnail(boss.imageUrl);
 
       await updateXP(this.user_int, this.exp);
-      await updateCredits(this.user_int, this.credits);
-      await updateBattleWins(this.user_int);
-      await this.reply(winEmbed)
-      return this.fighters.find(x => x.id === winner.id)!;
-    
+      await updateGold(this.user_int, this.gold);
+      await updateRaidWins(this.user_int);
+      await this.reply(winEmbed);
+      return this.fighters.find((x) => x.id === winner.id)!;
+    } else {
+      if (winner.id === this.author.id) {
+        const winEmbed = new EmbedBuilder()
+          .setColor(GOLD)
+          .setTitle("Battle Winner")
+          .setDescription(
+            `${winner.name} has won the battle and earned ${this.exp} EXP and ${this.gold} Gold! `
+          );
 
+        if (winner.imageUrl) winEmbed.setThumbnail(winner.imageUrl);
+
+        await updateXP(this.user_int, this.exp);
+        await updateGold(this.user_int, this.gold);
+        await updateBattleWins(this.user_int);
+        await this.reply(winEmbed);
+        return this.fighters.find((x) => x.id === winner.id)!;
+      } else {
+        const winEmbed = new EmbedBuilder()
+          .setColor(GOLD)
+          .setTitle("Battle Winner")
+          .setDescription(`${winner.name} has won the battle! `);
+
+        if (winner.imageUrl) winEmbed.setThumbnail(winner.imageUrl);
+
+        await this.reply(winEmbed);
+        return this.fighters.find((x) => x.id === winner.id)!;
       }
-      else {
-      const winEmbed = new EmbedBuilder()
-      .setColor(GOLD)
-      .setTitle("Battle Winner")
-      .setDescription(`${winner.name} has won the battle! `);
-      
-      if (winner.imageUrl)
-      winEmbed.setThumbnail(winner.imageUrl);
-
-      await this.reply(winEmbed)
-      return this.fighters.find(x => x.id === winner.id)!;
-
-      }
-    }   
-
-
+    }
   }
 }

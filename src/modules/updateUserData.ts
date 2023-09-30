@@ -6,8 +6,8 @@ export const updateXP = async (User: UserInt, Exp: number) => {
   return User;
 };
 
-export const updateCredits = async (User: UserInt, Credits: number) => {
-  User.credits += +Credits;
+export const updateGold = async (User: UserInt, Gold: number) => {
+  User.gold += +Gold;
   await User.save();
   return User;
 };
@@ -30,8 +30,8 @@ export const updateSkill = async (User: UserInt, skill: string) => {
   return User;
 };
 
-export const updatePet = async (User: UserInt, pet: string) => {
-  User.pet = pet;
+export const updateSpell = async (User: UserInt, spell: string) => {
+  User.spell = spell;
   await User.save();
   return User;
 };

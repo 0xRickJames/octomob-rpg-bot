@@ -5,44 +5,47 @@ import { Command } from "../interfaces/Command";
 export const shop: Command = {
   data: new SlashCommandBuilder()
     .setName("shop")
-    .setDescription("Displays what thxforplayin has to offer!"),
+    .setDescription("Displays what House Laristar has to offer!"),
 
   run: async (interaction) => {
     const embed = new EmbedBuilder()
-      .setTitle("thxforplayin's Black Market")
+      .setTitle("House Laristar's Marketplace")
       .setDescription(
-        "No more than one of each Weapon or Armor piece. No more than one Skill or Pet at a time!"
+        "No more than one of each Weapon or Armor piece. No more than one Skill or Spell at a time!"
       )
       .setColor(BROWN)
-      .setThumbnail(
-        "https://cdn.discordapp.com/attachments/939309405227339776/1039733241231442001/image.png"
-      )
+      .setThumbnail("https://www.loot-heroes-dev.lol/img/models/angel.png")
       .addFields(
         {
           name: "🛡Armor🛡",
           value:
-            "-**Battle Armor:** +20% damage reduction - **40 Credits**\n-**Battle Boots:** +7% damage reduction - **14 Credits**\n-**Battle Helmet:** +10% damage reduction - **20 Credits**\n-**Battle Gloves:** +5% damage reduction - **10 Credits**\n-**Power Armor:** +30% damage reduction - **60 Credits** - level > 3\n-**Power Boots:** +10% damage reduction - **20 Credits** - level > 3\n-**Power Helmet:** +15% damage reduction - **30 Credits** - level > 3\n-**Power Gloves:** +8% damage reduction - **16 Credits** - level > 3",
+            "-**Rare Armor:** +20% damage reduction - **40 Gold**\n-**Rare Boots:** +7% damage reduction - **14 Gold**\n-**Rare Helmet:** +10% damage reduction - **20 Gold**\n-**Rare Gloves:** +5% damage reduction - **10 Gold**\n-**Epic Armor:** +30% damage reduction - **60 Gold** - level > 3\n-**Epic Boots:** +10% damage reduction - **20 Gold** - level > 3\n-**Epic Helmet:** +15% damage reduction - **30 Gold** - level > 3\n-**Epic Gloves:** +8% damage reduction - **16 Gold** - level > 3",
           inline: false,
         },
         {
           name: "🗡Weapons🗡",
           value:
-            "-**Katana:** +5 to damage - **12 Credits**\n-**Pistol:** +10 to damage - **25 Credits**\n-**Rifle:** +20 to damage - **50 Credits**\n-**Rocket Launcher:** +50 to damage - **125 Credits**\n-**Thermal Katana:** +10 to damage - **25 Credits** - level > 3\n-**Laser Pistol:** +20 to damage - **50 Credits** - level > 3\n-**Laser Rifle:** +40 to damage - **100 Credits** - level > 3\n-**Pulse Cannon:** +100 to damage - **225 Credits** - level > 3",
+            "-**Gale Shortsword:** +5 to damage - **12 Gold**\n-**Tidal Spear:** +10 to damage - **25 Gold**\n-**Molten Axe:** +20 to damage - **50 Gold**\n-**Gaia Mace:** +50 to damage - **125 Gold**\n-**Gale Longsword:** +10 to damage - **25 Gold** - level > 3\n-**Tidal Trident:** +20 to damage - **50 Gold** - level > 3\n-**Molten Greataxe:** +40 to damage - **100 Gold** - level > 3\n-**Gaia Battlehammer:** +100 to damage - **225 Gold** - level > 3",
           inline: false,
         },
         {
-          name: "🦉Pets🦉",
+          name: "📖Spells📖",
           value:
-            "-**Attack Drones:** deals 15 damage - **20 Credits**\n-**Medical Drone:** heals 15 hitpoints - **20 Credits**\n-**EMP Drone:** deals 10 dmg and kills pets - **50 Credits** - level > 3\n-**Spy Drone:** heals 10 hp and steals armor - **50 Credits** - level > 3",
+            "-**Fireball:** deals 25 damage - **20 Gold**\n-**Heal:** heals 25 hitpoints - **20 Gold**\n-**Feeblemind:** deals 10 dmg and removes spells - **50 Gold** - level > 3\n-**Divine Intervention:** heals 10 hp and steals armor - **50 Gold** - level > 3",
           inline: false,
         },
         {
           name: "🧠Skills🧠",
           value:
-            "-**Combat Stim:** doubles attack and armor - **20 Credits**\n-**Stun Mine:** debuffs attack and armor 90% - **20 Credits**\n-**Disarm:** removes a weapon - **50 Credits** - level > 3\n-**Demoralize:** removes a skill - **50 Credits** - level > 3",
+            "-**Combat Tactics:** doubles attack and armor - **20 Gold**\n-**Stun Attack:** debuffs attack and armor 90% - **20 Gold**\n-**Disarm:** removes a weapon - **50 Gold** - level > 3\n-**Demoralize:** removes a skill - **50 Gold** - level > 3",
           inline: false,
-          },
-        { name: "⚠WARNING!⚠", value: "**NO REFUNDS!!**\nONE OF EACH **WEAPON** AND **ARMOR** PIECE AT A TIME!!.\nONE **SKILL** AND **PET** AT A TIME!!", inline: false }
+        },
+        {
+          name: "⚠WARNING!⚠",
+          value:
+            "**NO REFUNDS!!**\nONE OF EACH **WEAPON** AND **ARMOR** PIECE AT A TIME!!.\nONE **SKILL** AND **SPELL** AT A TIME!!",
+          inline: false,
+        }
       );
 
     interaction.reply({ embeds: [embed] });

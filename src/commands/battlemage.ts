@@ -3,17 +3,17 @@ import { Command } from "../interfaces/Command";
 import { Battle } from "../classes/Battle";
 import { powerUpCheck } from "../modules/powerUpCheck";
 import { Fighter } from "../classes/Fighter";
-import { updateCredits, updateXP } from "../modules/updateUserData";
+import { updateGold, updateXP } from "../modules/updateUserData";
 import { getUserData } from "../modules/getUserData";
-import { Katana, Pistol, Rifle, RocketLauncher } from "../classes/Weapon";
-import { BattleHelmet, BattleBoots, BattleArmor, BattleGloves } from "../classes/Armor";
-import { AttackDrone, MedicalDrone } from "../classes/Pet";
-import { CombatStim } from "../classes/Skill";
+import { GaleShortsword, TidalSpear } from "../classes/Weapon";
+import { RareHelmet, RareBoots, RareArmor, RareGloves } from "../classes/Armor";
+import { Heal } from "../classes/Spell";
+import { CombatTactics } from "../classes/Skill";
 
-export const flokimusk: Command = {
+export const battlemage: Command = {
   data: new SlashCommandBuilder()
-    .setName("flokimusk")
-    .setDescription("Fight against flokimusk!")
+    .setName("battlemage")
+    .setDescription("Fight against a Battlemage!")
     .addUserOption((option) =>
       option
         .setName("ally1")
@@ -21,10 +21,10 @@ export const flokimusk: Command = {
         .setRequired(false)
     )
     .addUserOption((option) =>
-    option
-      .setName("ally2")
-      .setDescription("An ally to join you.")
-      .setRequired(false)
+      option
+        .setName("ally2")
+        .setDescription("An ally to join you.")
+        .setRequired(false)
     )
     .addUserOption((option) =>
       option
@@ -33,10 +33,10 @@ export const flokimusk: Command = {
         .setRequired(false)
     )
     .addUserOption((option) =>
-    option
-      .setName("ally4")
-      .setDescription("An ally to join you.")
-      .setRequired(false)
+      option
+        .setName("ally4")
+        .setDescription("An ally to join you.")
+        .setRequired(false)
     )
     .addUserOption((option) =>
       option
@@ -45,10 +45,10 @@ export const flokimusk: Command = {
         .setRequired(false)
     )
     .addUserOption((option) =>
-    option
-      .setName("ally6")
-      .setDescription("An ally to join you.")
-      .setRequired(false)
+      option
+        .setName("ally6")
+        .setDescription("An ally to join you.")
+        .setRequired(false)
     )
     .addUserOption((option) =>
       option
@@ -57,10 +57,10 @@ export const flokimusk: Command = {
         .setRequired(false)
     )
     .addUserOption((option) =>
-    option
-      .setName("ally8")
-      .setDescription("An ally to join you.")
-      .setRequired(false)
+      option
+        .setName("ally8")
+        .setDescription("An ally to join you.")
+        .setRequired(false)
     )
     .addUserOption((option) =>
       option
@@ -69,142 +69,143 @@ export const flokimusk: Command = {
         .setRequired(false)
     ),
   run: async (interaction: CommandInteraction) => {
-
     const player1 = interaction.user as User;
     const player1_data = await getUserData(player1.id);
     await updateXP(player1_data, 5);
-    await updateCredits(player1_data, 1);
+    await updateGold(player1_data, 1);
     const member1 = interaction.guild!.members.cache.get(player1.id);
     const author = await powerUpCheck(player1, player1.id, member1!);
     const allies: Fighter[] = [];
     let oppMultiplier = 1;
 
     if (interaction.options.getUser("ally1") != null) {
-        const player = interaction.options.getUser("ally1") as User;
-          const member = interaction.guild!.members.cache.get(player.id);
-        const ally = await powerUpCheck(player, player.id, member!);
-        const player_data = await getUserData(player.id);
-        await updateXP(player_data, 5);
-        await updateCredits(player_data, 1);
-        allies.push(ally);
-        oppMultiplier += 1;
-      } 
-    if (interaction.options.getUser("ally2") != null) {
-      const player = interaction.options.getUser("ally2") as User;
-        const member = interaction.guild!.members.cache.get(player.id);
-        const ally = await powerUpCheck(player, player.id, member!);
+      const player = interaction.options.getUser("ally1") as User;
+      const member = interaction.guild!.members.cache.get(player.id);
+      const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateGold(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
-    }    
-    if (interaction.options.getUser("ally3") != null) {
-      const player = interaction.options.getUser("ally3") as User;
-        const member = interaction.guild!.members.cache.get(player.id);
-        const ally = await powerUpCheck(player, player.id, member!);
+    }
+    if (interaction.options.getUser("ally2") != null) {
+      const player = interaction.options.getUser("ally2") as User;
+      const member = interaction.guild!.members.cache.get(player.id);
+      const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateGold(player_data, 1);
+      allies.push(ally);
+      oppMultiplier += 1;
+    }
+    if (interaction.options.getUser("ally3") != null) {
+      const player = interaction.options.getUser("ally3") as User;
+      const member = interaction.guild!.members.cache.get(player.id);
+      const ally = await powerUpCheck(player, player.id, member!);
+      const player_data = await getUserData(player.id);
+      await updateXP(player_data, 5);
+      await updateGold(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
     if (interaction.options.getUser("ally4") != null) {
       const player = interaction.options.getUser("ally4") as User;
-        const member = interaction.guild!.members.cache.get(player.id);
-        const ally = await powerUpCheck(player, player.id, member!);
+      const member = interaction.guild!.members.cache.get(player.id);
+      const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateGold(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
-    }    
+    }
     if (interaction.options.getUser("ally5") != null) {
       const player = interaction.options.getUser("ally5") as User;
-        const member = interaction.guild!.members.cache.get(player.id);
-        const ally = await powerUpCheck(player, player.id, member!);
+      const member = interaction.guild!.members.cache.get(player.id);
+      const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateGold(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
     if (interaction.options.getUser("ally6") != null) {
       const player = interaction.options.getUser("ally6") as User;
-        const member = interaction.guild!.members.cache.get(player.id);
-        const ally = await powerUpCheck(player, player.id, member!);
+      const member = interaction.guild!.members.cache.get(player.id);
+      const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateGold(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
-    }    
+    }
     if (interaction.options.getUser("ally7") != null) {
       const player = interaction.options.getUser("ally7") as User;
-        const member = interaction.guild!.members.cache.get(player.id);
-        const ally = await powerUpCheck(player, player.id, member!);
+      const member = interaction.guild!.members.cache.get(player.id);
+      const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateGold(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
     if (interaction.options.getUser("ally8") != null) {
       const player = interaction.options.getUser("ally8") as User;
-        const member = interaction.guild!.members.cache.get(player.id);
-        const ally = await powerUpCheck(player, player.id, member!);
+      const member = interaction.guild!.members.cache.get(player.id);
+      const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateGold(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
-    }    
+    }
     if (interaction.options.getUser("ally9") != null) {
       const player = interaction.options.getUser("ally9") as User;
-        const member = interaction.guild!.members.cache.get(player.id);
-        const ally = await powerUpCheck(player, player.id, member!);
+      const member = interaction.guild!.members.cache.get(player.id);
+      const ally = await powerUpCheck(player, player.id, member!);
       const player_data = await getUserData(player.id);
       await updateXP(player_data, 5);
-      await updateCredits(player_data, 1);
+      await updateGold(player_data, 1);
       allies.push(ally);
       oppMultiplier += 1;
     }
 
-    const boss = new Fighter("flokimusk");
-    boss.hp = 1200;
-    boss.attack = 50;
+    const boss = new Fighter("Battlemage");
+    boss.hp = 700;
+    boss.attack = 30;
     boss.armor = 0.3;
-    boss.critChance = .40;
-    boss.imageUrl = "https://cryptobullsociety.com/wp-content/uploads/2022/06/Flokimusk-uai-516x516.jpg";
-    const pistol = new Pistol();
-    const katana = new Katana();
-    const rifle = new Rifle();
-    const rocket_launcher = new RocketLauncher();
+    boss.critChance = 0.4;
+    boss.imageUrl =
+      "https://metadata.lootheroes.io/common/hero/battlemageSoldier-square.png";
+    const pistol = new TidalSpear();
+    const katana = new GaleShortsword();
     boss.equipWeapon(pistol);
     boss.equipWeapon(katana);
-    boss.equipWeapon(rifle);
-    boss.equipWeapon(rocket_launcher);
-    const battle_helmet = new BattleHelmet();
-    const battle_boots = new BattleBoots();
-    const battle_gloves = new BattleGloves();
-    const battle_armor = new BattleArmor();
-    boss.equipArmor(battle_helmet);
-    boss.equipArmor(battle_boots);
-    boss.equipArmor(battle_armor);
-    boss.equipArmor(battle_gloves);
-    const attack_drone = new AttackDrone();
-    attack_drone.setOwner(boss);
-    boss.skill = new CombatStim();
-    
-    const exp = 600 / oppMultiplier;
+    const rare_helmet = new RareHelmet();
+    const rare_boots = new RareBoots();
+    const rare_gloves = new RareGloves();
+    const rare_armor = new RareArmor();
+    boss.equipArmor(rare_helmet);
+    boss.equipArmor(rare_boots);
+    boss.equipArmor(rare_armor);
+    boss.equipArmor(rare_gloves);
+    const heal = new Heal();
+    heal.setOwner(boss);
+    boss.skill = new CombatTactics();
+
+    const exp = 250 / oppMultiplier;
     const fixed_exp = exp.toFixed(0) as unknown as number;
-    const credits = 200 / oppMultiplier;
-    const fixed_credits = credits.toFixed(0) as unknown as number;
+    const gold = 105 / oppMultiplier;
+    const fixed_gold = gold.toFixed(0) as unknown as number;
 
-    const battle = new Battle(interaction, [boss, author, ...allies], fixed_exp, fixed_credits, player1_data, author);
-    battle.setBoss(boss);     
+    const battle = new Battle(
+      interaction,
+      [boss, author, ...allies],
+      fixed_exp,
+      fixed_gold,
+      player1_data,
+      author
+    );
+    battle.setBoss(boss);
     await battle.run();
-
-    
   },
 };

@@ -11,7 +11,7 @@ interface PlayerGameStat {
 export abstract class BaseBattle {
   protected round = 0;
   protected exp = 0;
-  protected credits = 0;
+  protected gold = 0;
   protected author!: Fighter;
   protected user_int!: UserInt;
   protected i: CommandInteraction;
@@ -27,15 +27,22 @@ export abstract class BaseBattle {
   /** Logs battle to stdout */
   logBattle = false;
 
-  /** 
+  /**
    * @param {CommandInteraction} i - discord.js's CommandInteraction
    * @param {Fighter[]} fighters - array of Fighter's object
    * */
-  constructor(i: CommandInteraction, fighters: Fighter[], exp: number, credits: number, user_int: UserInt, author: Fighter) {
+  constructor(
+    i: CommandInteraction,
+    fighters: Fighter[],
+    exp: number,
+    gold: number,
+    user_int: UserInt,
+    author: Fighter
+  ) {
     this.i = i;
     this.fighters = [...new Set(fighters)];
     this.exp = exp;
-    this.credits = credits;
+    this.gold = gold;
     this.user_int = user_int;
     this.author = author;
   }
@@ -59,33 +66,36 @@ export abstract class BaseBattle {
   }
 
   protected async reply(options: string | EmbedBuilder) {
-    let content: { content?: string, embeds?: EmbedBuilder[] };
+    let content: { content?: string; embeds?: EmbedBuilder[] };
 
     if (options instanceof EmbedBuilder) {
       content = { embeds: [options] };
     } else {
-      content = { content: options }
+      content = { content: options };
     }
 
     if (this.i.replied) {
-      await this.i.editReply(content)
+      await this.i.editReply(content);
     } else {
       await this.i.reply(content);
     }
   }
 
-  /** adds progress bar to battleEmbed */ 
+  /** adds progress bar to battleEmbed */
   protected progressBar(
-    embed: EmbedBuilder, name: string, hp: number, maxHP: number,
+    embed: EmbedBuilder,
+    name: string,
+    hp: number,
+    maxHP: number
   ) {
-
     const maxHPStr = Math.round(maxHP);
     const healthBar = this.bar(hp, maxHP);
     const remainingHP = hp >= 0 ? Math.round(hp) : 0;
 
-    embed.addFields(
-      { name: `${name}'s remaining HP`, value: `\`${healthBar}\` \`${remainingHP}/${maxHPStr}\`` },
-    );
+    embed.addFields({
+      name: `${name}'s remaining HP`,
+      value: `\`${healthBar}\` \`${remainingHP}/${maxHPStr}\``,
+    });
   }
 
   protected attack(p1: Fighter, p2: Fighter) {
@@ -100,82 +110,84 @@ export abstract class BaseBattle {
     const battleEmbed = new EmbedBuilder()
       .setColor(RED)
       .addFields(
-        { name: 'Attacking Player', value: p1.name, inline: true },
-		    { name: 'Defending Player', value: p2.name, inline: true },
+        { name: "Attacking Player", value: p1.name, inline: true },
+        { name: "Defending Player", value: p2.name, inline: true },
         { name: "Round", value: `\`${this.round.toString()}\``, inline: true },
-        { name: "Attack Rate", value: `\`${Math.round(attackRate)}${critText}\``, inline: true },
-        { name: "Damage Reduction", value: `\`${Math.round(armorProtection)}\``, inline: true },
-        { name: "Damage Done", value: `\`${Math.round(damageDealt)}\``, inline: true }
-    );
+        {
+          name: "Attack Rate",
+          value: `\`${Math.round(attackRate)}${critText}\``,
+          inline: true,
+        },
+        {
+          name: "Damage Reduction",
+          value: `\`${Math.round(armorProtection)}\``,
+          inline: true,
+        },
+        {
+          name: "Damage Done",
+          value: `\`${Math.round(damageDealt)}\``,
+          inline: true,
+        }
+      );
 
-    if (p1.imageUrl)
-      battleEmbed.setThumbnail(p1.imageUrl);
+    if (p1.imageUrl) battleEmbed.setThumbnail(p1.imageUrl);
 
     const p1Stat = this.gameStats.get(p1.id);
-    
-    if (p1Stat) {
 
+    if (p1Stat) {
       this.gameStats.set(p1.id, {
         remainingHP: p1.hp,
         totalDamageDealt: p1Stat.totalDamageDealt + damageDealt,
       });
-
     } else {
-
-      this.gameStats.set(p1.id, { 
-        remainingHP: p1.hp, 
+      this.gameStats.set(p1.id, {
+        remainingHP: p1.hp,
         totalDamageDealt: damageDealt,
       });
-
     }
 
     const p2Stat = this.gameStats.get(p2.id);
 
     if (p2Stat) {
-
       this.gameStats.set(p2.id, {
         ...p2Stat,
         remainingHP: p2.hp,
-      })
-
+      });
     } else {
-
       this.gameStats.set(p2.id, {
         remainingHP: p2.hp,
         totalDamageDealt: 0,
       });
     }
 
-
     return battleEmbed;
   }
 
-  /** 
+  /**
    * Gets total damage dealt for a particular fighter
    * */
   getDamageDealt(id: string) {
     return this.gameStats.get(id)?.totalDamageDealt;
   }
 
-  /** 
+  /**
    * Get remaining HP for a particular fighter
    * */
   getRemainingHP(id: string) {
     return this.gameStats.get(id)?.remainingHP;
   }
 
-
-  /** 
+  /**
    * Changes the discord.js message sent when player dies in the battle.
    * */
   setPlayerDeadText(text: (fighter: Fighter) => string) {
-    this.playerDiedText = text; 
+    this.playerDiedText = text;
   }
 
-  /** 
+  /**
    * Sets the battle scene interval.
    *
-   * @param ms {number} - time in milliseconds 
+   * @param ms {number} - time in milliseconds
    * */
   setInterval(ms: number) {
     this.interval = ms;
@@ -183,8 +195,9 @@ export abstract class BaseBattle {
   }
 
   private getEmbedInfo(embed: EmbedBuilder) {
-
-    let result = embed.data.description ? `\nDescription: ${embed.data.description}` : "";
+    let result = embed.data.description
+      ? `\nDescription: ${embed.data.description}`
+      : "";
 
     for (const field of embed.data.fields as APIEmbedField[]) {
       result += `\n${field.name}: ${field.value}`;
@@ -193,11 +206,11 @@ export abstract class BaseBattle {
     return result;
   }
 
-  /** 
+  /**
    * Updates embed and log if enabled.
    * */
   protected async updateEmbed(embed: EmbedBuilder) {
     this.logBattle && console.log(this.getEmbedInfo(embed));
-    this.showBattle && await this.reply(embed);
+    this.showBattle && (await this.reply(embed));
   }
 }

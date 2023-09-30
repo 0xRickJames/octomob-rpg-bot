@@ -3,8 +3,7 @@ import { Base } from "./Base";
 import { Player } from "./Player";
 import { inlineCode, SILVER } from "./utils";
 
-
-/** 
+/**
  * Abstract weapon class to be used to increase Fighter's attack attribute. To
  * add your own weapon, extend Weapon class and change the attributes to your
  * liking.
@@ -28,67 +27,65 @@ export abstract class Weapon extends Base {
 
   /** EmbedBuilder that represents Weapon */
   show() {
-
     const embed = new EmbedBuilder()
       .setTitle("Weapon")
       .setColor(SILVER)
       .addFields(
         { name: "Name", value: this.name, inline: true },
-        { name: "Attack", value: inlineCode(this.attack), inline: true });
+        { name: "Attack", value: inlineCode(this.attack), inline: true }
+      );
 
-    if (this.imageUrl)
-      embed.setThumbnail(this.imageUrl);
+    if (this.imageUrl) embed.setThumbnail(this.imageUrl);
 
     return embed;
   }
 }
 
-export class Pistol extends Weapon {
-  name = "Pistol";
-  id = "pistol";
-  attack = 10;
-  imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1001548145353822309/pistol.png";
-}
-export class Rifle extends Weapon {
-  name = "Rifle";
-  id = "rifle";
-  attack = 20;
-  imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1001548145647419443/rifle.png";
-}
-export class RocketLauncher extends Weapon {
-  name = "Rocket launcher";
-  id = "rocket_launcher";
-  attack = 50;
-  imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1001548145957814282/rlauncher.png";
-}
-export class Katana extends Weapon {
-  name = "Katana";
-  id = "katana";
+export class GaleShortsword extends Weapon {
+  name = "Gale Shortsword";
+  id = "gale_shortsword";
   attack = 5;
-  imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1001548198638276628/katana.png";
+  imageUrl = "https://metadata.lootheroes.io/common/gear/wind_weapon_rare.png";
 }
-export class LaserPistol extends Weapon {
-  name = "Laser Pistol";
-  id = "laser_pistol";
-  attack = 20;
-  imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1001548199238057984/lpistol.png";
-}
-export class LaserRifle extends Weapon {
-  name = "Laser Rifle";
-  id = "laser_rifle";
-  attack = 40;
-  imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1001548199602950174/lrifle.png";
-}
-export class PulseCannon extends Weapon {
-  name = "Pulse Cannon";
-  id = "pulse_cannon";
-  attack = 100;
-  imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1001548144271691826/pcannon.png";
-}
-export class ThermalKatana extends Weapon {
-  name = "Thermal Katana";
-  id = "thermal_katana";
+export class TidalSpear extends Weapon {
+  name = "Tidal Spear";
+  id = "tidal_spear";
   attack = 10;
-  imageUrl = "https://cdn.discordapp.com/attachments/939309405227339776/1001548146645663754/tkatana.png";
+  imageUrl = "https://metadata.lootheroes.io/common/gear/water_weapon_rare.png";
 }
-
+export class MoltenAxe extends Weapon {
+  name = "Molten Axe";
+  id = "molten_axe";
+  attack = 20;
+  imageUrl = "https://metadata.lootheroes.io/common/gear/fire_weapon_rare.png";
+}
+export class GaiaMace extends Weapon {
+  name = "Gaia Mace";
+  id = "gaia_mace";
+  attack = 50;
+  imageUrl = "https://metadata.lootheroes.io/common/gear/earth_weapon_rare.png";
+}
+export class GaleLongsword extends Weapon {
+  name = "Gale Longsword";
+  id = "gale_longsword";
+  attack = 10;
+  imageUrl = "https://metadata.lootheroes.io/common/gear/wind_weapon_epic.png";
+}
+export class TidalTrident extends Weapon {
+  name = "Tidal Trident";
+  id = "tidal_trident";
+  attack = 20;
+  imageUrl = "https://metadata.lootheroes.io/common/gear/water_weapon_epic.png";
+}
+export class MoltenGreataxe extends Weapon {
+  name = "Molten Greataxe";
+  id = "molten_greataxe";
+  attack = 40;
+  imageUrl = "https://metadata.lootheroes.io/common/gear/fire_weapon_epic.png";
+}
+export class GaiaBattlehammer extends Weapon {
+  name = "Gaia Battlehammer";
+  id = "gaia_battlehammer";
+  attack = 100;
+  imageUrl = "https://metadata.lootheroes.io/common/gear/earth_weapon_epic.png";
+}

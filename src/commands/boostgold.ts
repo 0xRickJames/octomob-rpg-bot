@@ -1,16 +1,16 @@
 import { SlashCommandBuilder, GuildMember, User } from "discord.js";
 import { Command } from "../interfaces/Command";
 import { getUserData } from "../modules/getUserData";
-import { updateXP } from "../modules/updateUserData";
+import { updateGold, updateXP } from "../modules/updateUserData";
 
-export const boostxp: Command = {
+export const boostgold: Command = {
   data: new SlashCommandBuilder()
-    .setName("boostxp")
-    .setDescription("XP Booster")
+    .setName("boostgold")
+    .setDescription("Gold Booster")
     .addNumberOption((option) =>
       option
         .setName("amount")
-        .setDescription("The amount of XP you want to add")
+        .setDescription("The amount of gold you want to add")
         .setRequired(true)
     )
     .addUserOption((option) =>
@@ -25,23 +25,22 @@ export const boostxp: Command = {
       author.roles.cache.has("1039934064376938637") ||
       author.user.id === "267142718856101889"
     ) {
-      const xp = interaction.options.get("amount");
-
+      const gold = interaction.options.get("amount");
       if (interaction.options.getUser("boostie")) {
-        if (xp != null) {
+        if (gold != null) {
           const user = interaction.options.getUser("boostie") as User;
           const targetUser = await getUserData(user.id);
-          await updateXP(targetUser, xp.value as number);
+          await updateGold(targetUser, gold.value as number);
           await interaction.reply(
-            `Boosted XP ${xp.value} points for ${user.username}!`
+            `Boosted Gold ${gold.value} for ${user.username}!`
           );
         }
       } else {
         const member = interaction.member as GuildMember;
         const targetUser = await getUserData(member.id);
-        if (xp != null) {
-          await updateXP(targetUser, xp.value as number);
-          await interaction.reply("Boosted XP " + xp.value + " points!");
+        if (gold != null) {
+          await updateGold(targetUser, gold.value as number);
+          await interaction.reply("Boosted Gold " + gold.value + "!");
         }
       }
     } else {

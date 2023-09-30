@@ -12,11 +12,11 @@ export const bossprofile: Command = {
         .setDescription("Boss whose profile will be shown")
         .setRequired(true)
         .addChoices(
-          { name: "Hitman", value: "hitman" },
-          { name: "Made Man", value: "mademan" },
-          { name: "flokimusk", value: "flokimusk" },
-          { name: "BullDuck", value: "bullduck" },
-          { name: "The DonFather", value: "donfather" }
+          { name: "Warrior", value: "warrior" },
+          { name: "Battlemage", value: "battlemage" },
+          { name: "Shaman", value: "shaman" },
+          { name: "House Laristar", value: "house_laristar" },
+          { name: "Full Meta Alchemist", value: "full_meta_alchemist" }
         )
     ),
 
@@ -24,13 +24,10 @@ export const bossprofile: Command = {
     if (interaction.options.get("boss") != null) {
       const boss_name = interaction.options.get("boss");
       if (boss_name != null) {
-
         const boss = await powerUpCheckBoss(boss_name.value as string);
         if (boss != undefined) {
-
           await interaction.reply({ embeds: [boss.showBoss()] });
         }
-        
       }
     }
   },

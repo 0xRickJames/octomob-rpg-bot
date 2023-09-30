@@ -1,19 +1,19 @@
 import { EmbedBuilder } from "discord.js";
 import { Armor } from "./Armor";
 import { Base } from "./Base";
-import { Pet } from "./Pet";
+import { Spell } from "./Spell";
 import { Skill } from "./Skill";
-import { 
-  RED_CIRCLE, 
+import {
+  RED_CIRCLE,
   formatPercent,
-  inlineCode, 
-  random, 
+  inlineCode,
+  random,
   GREEN_CIRLE,
   BLUE,
 } from "./utils";
 import { Weapon } from "./Weapon";
 
-/** 
+/**
  * Fighter is base class to be used in Battle. Only class derived from Fighter
  * can be used in Battle.
  *
@@ -32,8 +32,8 @@ export class Fighter extends Base {
   id: string;
   /** Experience Points */
   exp?: number;
-  /** Credits Points */
-  credits?: number;
+  /** Gold Points */
+  gold?: number;
   /** Level */
   level?: number;
   /** Damage dealt when attack */
@@ -52,9 +52,9 @@ export class Fighter extends Base {
   equippedWeapons: Weapon[] = [];
   /** Fighter's Skill */
   skill?: Skill;
-  /** Fighter's Pet */
-  pet?: Pet;
-  hasPet?: boolean;
+  /** Fighter's Spell */
+  spell?: Spell;
+  hasSpell?: boolean;
   /** Image to represent this Fighter */
   imageUrl?: string;
   battleWins?: number;
@@ -83,9 +83,9 @@ export class Fighter extends Base {
     return random.bool(this.critChance);
   }
 
-  /** 
+  /**
    * EmbedBuilder that represents this Fighter. Passing another Fighter in this
-   * method will make comparison between this Fighter stat with the other 
+   * method will make comparison between this Fighter stat with the other
    * */
   show(fighter?: Fighter) {
     const armor = formatPercent(this.armor);
@@ -103,33 +103,58 @@ export class Fighter extends Base {
       .setTitle("Profile")
       .setColor(BLUE)
       .addFields(
-      { name: "Name", value: this.name, inline: false },      
-      { name: "💪Level", value: this.level?.toString() || "none", inline: true  },
-      { name: "⚔Battle Wins", value: this.battleWins?.toString() || "none", inline: true },
-      { name: "🤖Boss Wins", value: this.raidWins?.toString() || "none", inline: true },
-      { name: "📝Experience", value: this.exp?.toString() || "none", inline: true  },
-      { name: "♥HP", value: Math.round(this.hp).toString(), inline: true },
-      { name: "🛡Armor", value: armor, inline: true },
-      { name: "🗡Attack", value: Math.round(this.attack).toString(), inline: true },
-      { name: "🎯Crit Chance", value: critChance, inline: true },
-      { name: "👊Crit Damage", value: `x${this.critDamage.toFixed(1)}`, inline: true },
-      { name: "🧠Skill", value: this.skill?.name || "none", inline: true },
-      { name: "🦉Pet", value: this.pet?.name || "none", inline: true  },
-      { name: "💳Credits", value: this.credits?.toString() || "none", inline: true  },
-      { name: "🛡Armors", value: armorList || "none", inline: true },
-      { name: "🗡Weapons", value: weaponList || "none", inline: true },
-    );
+        { name: "Name", value: this.name, inline: false },
+        {
+          name: "💪Level",
+          value: this.level?.toString() || "none",
+          inline: true,
+        },
+        {
+          name: "⚔Battle Wins",
+          value: this.battleWins?.toString() || "none",
+          inline: true,
+        },
+        {
+          name: "🤖Boss Wins",
+          value: this.raidWins?.toString() || "none",
+          inline: true,
+        },
+        {
+          name: "📝Experience",
+          value: this.exp?.toString() || "none",
+          inline: true,
+        },
+        { name: "♥HP", value: Math.round(this.hp).toString(), inline: true },
+        { name: "🛡Armor", value: armor, inline: true },
+        {
+          name: "🗡Attack",
+          value: Math.round(this.attack).toString(),
+          inline: true,
+        },
+        { name: "🎯Crit Chance", value: critChance, inline: true },
+        {
+          name: "👊Crit Damage",
+          value: `x${this.critDamage.toFixed(1)}`,
+          inline: true,
+        },
+        { name: "🧠Skill", value: this.skill?.name || "none", inline: true },
+        { name: "📖Spell", value: this.spell?.name || "none", inline: true },
+        {
+          name: "💰Gold",
+          value: this.gold?.toString() || "none",
+          inline: true,
+        },
+        { name: "🛡Armors", value: armorList || "none", inline: true },
+        { name: "🗡Weapons", value: weaponList || "none", inline: true }
+      );
 
-    if (this.imageUrl)
-      embed.setThumbnail(this.imageUrl);
+    if (this.imageUrl) embed.setThumbnail(this.imageUrl);
 
     if (fighter) {
-
-      const fields1  = ["attack", "hp"] as const;
+      const fields1 = ["attack", "hp"] as const;
       let i = 1;
 
       for (const field of fields1) {
-
         const monsterStat = this[field];
         const playerStat = fighter[field];
         let stat = monsterStat.toString();
@@ -139,16 +164,15 @@ export class Fighter extends Base {
         } else if (monsterStat > playerStat) {
           stat += ` ${RED_CIRCLE}`;
         }
-        
+
         if (embed.data.fields != undefined) {
-        embed.data.fields[i].value = inlineCode(stat);
+          embed.data.fields[i].value = inlineCode(stat);
         }
         i++;
       }
 
       const fields2 = ["armor", "critChance"] as const;
       for (const field of fields2) {
-
         const monsterStat = this[field];
         const playerStat = fighter[field];
         let stat = formatPercent(monsterStat);
@@ -160,15 +184,13 @@ export class Fighter extends Base {
         }
 
         if (embed.data.fields != undefined) {
-        embed.data.fields[i].value = inlineCode(stat);
+          embed.data.fields[i].value = inlineCode(stat);
         }
         i++;
       }
 
-
       const fields3 = ["critDamage"] as const;
       for (const field of fields3) {
-
         const monsterStat = this[field];
         const playerStat = fighter[field];
         let stat = `x${monsterStat.toFixed(1)}`;
@@ -180,7 +202,7 @@ export class Fighter extends Base {
         }
 
         if (embed.data.fields != undefined) {
-        embed.data.fields[i].value = inlineCode(stat);
+          embed.data.fields[i].value = inlineCode(stat);
         }
         i++;
       }
@@ -205,30 +227,43 @@ export class Fighter extends Base {
       .setTitle("Profile")
       .setColor(BLUE)
       .addFields(
-      { name: "Name", value: this.name, inline: false },
-      { name: "📝Experience", value: this.exp?.toString() || "none", inline: true  },
-      { name: "💳Credits", value: this.credits?.toString() || "none", inline: true  },
-      { name: "♥HP", value: Math.round(this.hp).toString(), inline: true },
-      { name: "🗡Attack", value: Math.round(this.attack).toString(), inline: true },
-      { name: "🎯Crit Chance", value: critChance, inline: true },
-      { name: "👊Crit Damage", value: `x${this.critDamage.toFixed(1)}`, inline: true },
-      { name: "🛡Armor", value: armor, inline: true },
-      { name: "🧠Skill", value: this.skill?.name || "none", inline: true },
-      { name: "🦉Pet", value: this.pet?.name || "none", inline: true  },
-      { name: "🛡Armors", value: armorList || "none", inline: true },
-      { name: "🗡Weapons", value: weaponList || "none", inline: true },
-    );
+        { name: "Name", value: this.name, inline: false },
+        {
+          name: "📝Experience",
+          value: this.exp?.toString() || "none",
+          inline: true,
+        },
+        {
+          name: "💰Gold",
+          value: this.gold?.toString() || "none",
+          inline: true,
+        },
+        { name: "♥HP", value: Math.round(this.hp).toString(), inline: true },
+        {
+          name: "🗡Attack",
+          value: Math.round(this.attack).toString(),
+          inline: true,
+        },
+        { name: "🎯Crit Chance", value: critChance, inline: true },
+        {
+          name: "👊Crit Damage",
+          value: `x${this.critDamage.toFixed(1)}`,
+          inline: true,
+        },
+        { name: "🛡Armor", value: armor, inline: true },
+        { name: "🧠Skill", value: this.skill?.name || "none", inline: true },
+        { name: "📖Spell", value: this.spell?.name || "none", inline: true },
+        { name: "🛡Armors", value: armorList || "none", inline: true },
+        { name: "🗡Weapons", value: weaponList || "none", inline: true }
+      );
 
-    if (this.imageUrl)
-      embed.setThumbnail(this.imageUrl);
+    if (this.imageUrl) embed.setThumbnail(this.imageUrl);
 
     if (fighter) {
-
-      const fields1  = ["attack", "hp"] as const;
+      const fields1 = ["attack", "hp"] as const;
       let i = 1;
 
       for (const field of fields1) {
-
         const monsterStat = this[field];
         const playerStat = fighter[field];
         let stat = monsterStat.toString();
@@ -238,16 +273,15 @@ export class Fighter extends Base {
         } else if (monsterStat > playerStat) {
           stat += ` ${RED_CIRCLE}`;
         }
-        
+
         if (embed.data.fields != undefined) {
-        embed.data.fields[i].value = inlineCode(stat);
+          embed.data.fields[i].value = inlineCode(stat);
         }
         i++;
       }
 
       const fields2 = ["armor", "critChance"] as const;
       for (const field of fields2) {
-
         const monsterStat = this[field];
         const playerStat = fighter[field];
         let stat = formatPercent(monsterStat);
@@ -259,15 +293,13 @@ export class Fighter extends Base {
         }
 
         if (embed.data.fields != undefined) {
-        embed.data.fields[i].value = inlineCode(stat);
+          embed.data.fields[i].value = inlineCode(stat);
         }
         i++;
       }
 
-
       const fields3 = ["critDamage"] as const;
       for (const field of fields3) {
-
         const monsterStat = this[field];
         const playerStat = fighter[field];
         let stat = `x${monsterStat.toFixed(1)}`;
@@ -279,7 +311,7 @@ export class Fighter extends Base {
         }
 
         if (embed.data.fields != undefined) {
-        embed.data.fields[i].value = inlineCode(stat);
+          embed.data.fields[i].value = inlineCode(stat);
         }
         i++;
       }

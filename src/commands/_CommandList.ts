@@ -3,18 +3,18 @@ import { boost } from "./boost";
 import { profile } from "./profile";
 import { battle } from "./battle";
 import { boostxp } from "./boostxp";
-import { boostcredits } from "./boostcredits";
+import { boostgold } from "./boostgold";
 import { armor } from "./armor";
 import { weapon } from "./weapon";
-import { pet } from "./pet";
+import { spell } from "./spell";
 import { skill } from "./skill";
 import { shop } from "./shop";
 import { buy } from "./buy";
-import { hitman } from "./hitman";
-import { mademan } from "./mademan";
-import { flokimusk } from "./flokimusk";
-import { bullduck } from "./bullduck";
-import { donfather } from "./donfather";
+import { warrior } from "./warrior";
+import { battlemage } from "./battlemage";
+import { shaman } from "./shaman";
+import { house_laristar } from "./house_laristar";
+import { full_meta_alchemist } from "./full_meta_alchemist";
 import { info } from "./info";
 import { bossprofile } from "./bossprofile";
 
@@ -23,18 +23,18 @@ export const CommandList: Command[] = [
   profile,
   battle,
   boostxp,
-  boostcredits,
+  boostgold,
   armor,
   weapon,
-  pet,
+  spell,
   skill,
   shop,
   buy,
-  hitman,
-  mademan,
-  flokimusk,
-  bullduck,
-  donfather,
+  warrior,
+  battlemage,
+  shaman,
+  house_laristar,
+  full_meta_alchemist,
   info,
   bossprofile,
 ];
